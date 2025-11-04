@@ -307,6 +307,30 @@ export default function Dashboard() {
   const [activeView, setActiveView] = useState('overview')
   const [timeRange, setTimeRange] = useState('7d')
 
+  // Set dynamic page title with animation
+  useEffect(() => {
+    const titles = [
+      "CyberThink - Intelligent Cyber Risk Assistant",
+      "CyberThink - LLM-Powered Risk Management", 
+      "CyberThink - Real-Time Security Analytics",
+      "CyberThink - Executive-Ready Cyber Reports"
+    ]
+    
+    let currentIndex = 0
+    const animateTitle = () => {
+      document.title = titles[currentIndex]
+      currentIndex = (currentIndex + 1) % titles.length
+    }
+    
+    // Initial title
+    document.title = "CyberThink - Intelligent Cyber Risk Assistant"
+    
+    // Animate title every 3 seconds
+    const titleInterval = setInterval(animateTitle, 3000)
+    
+    return () => clearInterval(titleInterval)
+  }, [])
+
   return (
     <div className="min-h-screen relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 overflow-hidden">
       {/* Blue Toned Background with Patterns */}
@@ -350,8 +374,32 @@ export default function Dashboard() {
       </div>
       
       <div className="relative z-10">
+        {/* Animated Title Banner */}
+        <motion.div
+          className="fixed top-0 left-0 right-0 bg-gradient-to-r from-cyan-600/95 via-blue-600/95 to-indigo-600/95 backdrop-blur-xl border-b border-cyan-400/30 z-[60] shadow-2xl"
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <div className="max-w-7xl mx-auto px-6 py-3">
+            <motion.div
+              className="text-center"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
+              <TypewriterText 
+                text="🚀 CyberThink - Transforming Cyber Risk Management with AI Intelligence"
+                className="text-lg md:text-xl font-bold bg-gradient-to-r from-white via-cyan-100 to-white bg-clip-text text-transparent"
+                delay={800}
+                speed={50}
+              />
+            </motion.div>
+          </div>
+        </motion.div>
+
         {/* Blue Toned Header */}
-        <header className="relative bg-blue-900/80 backdrop-blur-xl border-b border-blue-400/20 sticky top-0 z-50">
+        <header className="relative bg-blue-900/80 backdrop-blur-xl border-b border-blue-400/20 sticky top-0 z-50 mt-16">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/80 to-indigo-900/90 pointer-events-none"></div>
           
           <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
