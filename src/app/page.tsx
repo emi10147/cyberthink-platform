@@ -1,0 +1,865 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, AreaChart, Area } from 'recharts'
+
+// Typewriter Text Component
+interface TypewriterTextProps {
+  text: string;
+  className?: string;
+  delay?: number;
+  speed?: number;
+}
+
+const TypewriterText: React.FC<TypewriterTextProps> = ({ text, className, delay = 0, speed = 50 }) => {
+  const [displayText, setDisplayText] = useState('')
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [showCursor, setShowCursor] = useState(true)
+
+  useEffect(() => {
+    const startTyping = setTimeout(() => {
+      if (currentIndex < text.length) {
+        const timer = setTimeout(() => {
+          setDisplayText(text.slice(0, currentIndex + 1))
+          setCurrentIndex(currentIndex + 1)
+        }, speed)
+        return () => clearTimeout(timer)
+      } else {
+        // Blinking cursor effect
+        const cursorTimer = setInterval(() => {
+          setShowCursor(prev => !prev)
+        }, 500)
+        return () => clearInterval(cursorTimer)
+      }
+    }, delay)
+
+    return () => clearTimeout(startTyping)
+  }, [currentIndex, text, delay, speed])
+
+  return (
+    <span className={className}>
+      {displayText}
+      {showCursor && currentIndex <= text.length && (
+        <span className="animate-pulse">|</span>
+      )}
+    </span>
+  )
+}
+
+// Enhanced Particle System Component
+const ParticleField = () => {
+  const [particles, setParticles] = useState<Array<{
+    id: number;
+    x: number;
+    y: number;
+    size: number;
+    delay: number;
+    duration: number;
+  }>>([])
+  
+  useEffect(() => {
+    const newParticles = Array.from({ length: 25 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 3 + 1,
+      delay: Math.random() * 4,
+      duration: Math.random() * 15 + 10
+    }))
+    setParticles(newParticles)
+  }, [])
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {particles.map(particle => (
+        <motion.div
+          key={particle.id}
+          className="absolute bg-gradient-to-br from-blue-400/20 via-purple-400/15 to-cyan-400/10 rounded-full"
+          style={{ 
+            left: `${particle.x}%`, 
+            top: `${particle.y}%`, 
+            width: particle.size, 
+            height: particle.size 
+          }}
+          animate={{
+            y: [-30, 30],
+            x: [-10, 10],
+            opacity: [0, 0.8, 0],
+            scale: [0.3, 1.2, 0.3]
+          }}
+          transition={{
+            duration: particle.duration,
+            delay: particle.delay,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
+// Neural Network Background Component
+const NeuralBackground = () => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 1200 800">
+      <defs>
+        <linearGradient id="neuralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.3" />
+          <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.2" />
+          <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.1" />
+        </linearGradient>
+      </defs>
+      
+      <motion.path
+        d="M100,200 Q300,100 500,200 T900,200"
+        stroke="url(#neuralGradient)"
+        strokeWidth="1"
+        fill="none"
+        animate={{ pathLength: [0, 1, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.path
+        d="M200,400 Q400,300 600,400 T1000,400"
+        stroke="url(#neuralGradient)"
+        strokeWidth="1"
+        fill="none"
+        animate={{ pathLength: [0, 1, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      />
+      <motion.path
+        d="M50,600 Q350,500 650,600 T1150,600"
+        stroke="url(#neuralGradient)"
+        strokeWidth="1"
+        fill="none"
+        animate={{ pathLength: [0, 1, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+      />
+    </svg>
+  </div>
+)
+
+interface MetricCardProps {
+  title: string;
+  value: string;
+  change: number;
+  icon: React.ReactNode;
+  delay?: number;
+  color?: 'blue' | 'red' | 'green' | 'yellow' | 'purple' | 'cyan';
+  trend?: number[];
+}
+
+const MetricCard: React.FC<MetricCardProps> = ({ title, value, change, icon, delay = 0, color = 'blue', trend = [] }) => {
+  const [isHovered, setIsHovered] = useState(false)
+  
+  const getGradientClasses = (color: string) => {
+    const gradients: Record<string, string> = {
+      red: 'from-red-500/10 via-red-400/5 to-transparent border-red-500/20 shadow-red-500/10',
+      green: 'from-emerald-500/10 via-emerald-400/5 to-transparent border-emerald-500/20 shadow-emerald-500/10',
+      yellow: 'from-amber-500/10 via-amber-400/5 to-transparent border-amber-500/20 shadow-amber-500/10',
+      purple: 'from-purple-500/10 via-purple-400/5 to-transparent border-purple-500/20 shadow-purple-500/10',
+      cyan: 'from-cyan-500/10 via-cyan-400/5 to-transparent border-cyan-500/20 shadow-cyan-500/10',
+      blue: 'from-blue-500/10 via-blue-400/5 to-transparent border-blue-500/20 shadow-blue-500/10'
+    }
+    return gradients[color] || gradients.blue
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40, scale: 0.9 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      whileHover={{ y: -8, scale: 1.03 }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      transition={{ 
+        delay, 
+        duration: 0.8, 
+        ease: [0.16, 1, 0.3, 1],
+        scale: { duration: 0.3 },
+        y: { duration: 0.3 }
+      }}
+      className={`relative group p-8 rounded-3xl border backdrop-blur-xl transition-all duration-700 bg-gradient-to-br ${getGradientClasses(color)} overflow-hidden cursor-pointer hover:shadow-2xl`}
+    >
+      {/* Dynamic Glow Effect */}
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1.2 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.5 }}
+            className={`absolute -inset-1 bg-gradient-to-r from-${color}-500/30 via-purple-500/20 to-${color}-500/30 rounded-3xl blur-xl`} 
+          />
+        )}
+      </AnimatePresence>
+      
+      {/* Glassmorphism Layer */}
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-br from-white/[0.12] via-white/[0.06] to-transparent rounded-3xl"
+        animate={{ opacity: isHovered ? 1 : 0.3 }}
+        transition={{ duration: 0.5 }}
+      />
+      
+      {/* Animated Mesh Pattern */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.15)_1px,transparent_0)] bg-[length:20px_20px]" />
+      </div>
+      
+      {/* Flowing Border Animation */}
+      <div className="absolute inset-0 rounded-3xl overflow-hidden">
+        <motion.div 
+          className={`absolute inset-0 bg-gradient-to-r from-transparent via-${color}-400/40 to-transparent translate-x-[-100%] skew-x-12`}
+          animate={{ 
+            translateX: isHovered ? ['0%', '200%'] : '-100%' 
+          }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+        />
+      </div>
+      
+      <div className="relative z-10">
+        <div className="flex items-start justify-between mb-6">
+          <motion.div 
+            className={`p-4 rounded-2xl bg-gradient-to-br from-${color}-400/25 via-${color}-500/15 to-${color}-600/25 backdrop-blur-md border border-${color}-400/30 shadow-lg`}
+            whileHover={{ scale: 1.15, rotate: 5 }}
+            transition={{ duration: 0.3 }}
+          >
+            {icon}
+          </motion.div>
+          
+          <div className="flex flex-col items-end space-y-3">
+            <motion.div 
+              className={`px-4 py-2 rounded-2xl bg-gradient-to-r from-${color}-500/25 to-${color}-600/25 text-${color}-200 border border-${color}-400/40 text-xs font-bold backdrop-blur-md shadow-lg`}
+              animate={{ 
+                scale: change > 0 ? [1, 1.1, 1] : [1, 0.95, 1],
+                boxShadow: isHovered ? '0 8px 32px rgba(0,0,0,0.3)' : '0 4px 16px rgba(0,0,0,0.1)'
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <span className="flex items-center gap-1">
+                {change > 0 ? '↗️' : '↘️'} {Math.abs(change)}%
+              </span>
+            </motion.div>
+            
+            {trend && trend.length > 0 && (
+              <motion.div 
+                className="w-20 h-8 rounded-lg overflow-hidden backdrop-blur-sm bg-white/5 border border-white/10"
+                whileHover={{ scale: 1.1 }}
+              >
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={trend.map((val, idx) => ({ value: val, index: idx }))}>
+                    <defs>
+                      <linearGradient id={`gradient-${color}`} x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor={color === 'red' ? '#ef4444' : color === 'green' ? '#22c55e' : '#3b82f6'} stopOpacity={0.8}/>
+                        <stop offset="95%" stopColor={color === 'red' ? '#ef4444' : color === 'green' ? '#22c55e' : '#3b82f6'} stopOpacity={0}/>
+                      </linearGradient>
+                    </defs>
+                    <Area
+                      type="monotone"
+                      dataKey="value"
+                      stroke={color === 'red' ? '#ef4444' : color === 'green' ? '#22c55e' : '#3b82f6'}
+                      fillOpacity={1}
+                      fill={`url(#gradient-${color})`}
+                      strokeWidth={2}
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </motion.div>
+            )}
+          </div>
+        </div>
+        
+        <div className="space-y-3">
+          <h3 className="text-sm font-semibold text-white/70 tracking-wide uppercase leading-tight">{title}</h3>
+          <motion.p 
+            className="text-4xl font-black bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent tracking-tight leading-none"
+            animate={{ scale: isHovered ? 1.05 : 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            {value}
+          </motion.p>
+        </div>
+      </div>
+      
+      {/* Floating Ambient Lights */}
+      <motion.div 
+        className="absolute top-6 right-6 w-3 h-3 bg-gradient-to-r from-white/60 to-white/30 rounded-full blur-sm"
+        animate={{ 
+          opacity: [0.4, 1, 0.4],
+          scale: [0.8, 1.2, 0.8] 
+        }}
+        transition={{ duration: 3, repeat: Infinity }}
+      />
+      <motion.div 
+        className="absolute bottom-8 left-8 w-2 h-2 bg-gradient-to-r from-white/40 to-white/20 rounded-full blur-sm"
+        animate={{ 
+          opacity: [0.3, 0.8, 0.3],
+          scale: [0.6, 1, 0.6] 
+        }}
+        transition={{ duration: 4, repeat: Infinity, delay: 1.5 }}
+      />
+    </motion.div>
+  )
+}
+
+export default function Dashboard() {
+  const [activeView, setActiveView] = useState('overview')
+  const [timeRange, setTimeRange] = useState('7d')
+
+  return (
+    <div className="min-h-screen relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 overflow-hidden">
+      {/* Blue Toned Background with Patterns */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-blue-800/80 to-indigo-900/90 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-tl from-cyan-900/30 via-transparent to-blue-900/40 pointer-events-none" />
+      
+      {/* Enhanced Grid Pattern */}
+      <div className="absolute inset-0 opacity-[0.08] pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.8)_1px,transparent_0)] bg-[length:40px_40px]" />
+      </div>
+      
+      {/* Floating Geometric Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div 
+          className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-blue-400/20 to-indigo-400/30 rounded-full blur-3xl"
+          animate={{ 
+            scale: [1, 1.1, 1],
+            opacity: [0.3, 0.6, 0.3],
+            rotate: [0, 90, 0]
+          }}
+          transition={{ duration: 8, repeat: Infinity }}
+        />
+        <motion.div 
+          className="absolute bottom-32 left-16 w-48 h-48 bg-gradient-to-br from-cyan-400/20 to-blue-400/30 rounded-full blur-3xl"
+          animate={{ 
+            scale: [1.1, 1, 1.1],
+            opacity: [0.2, 0.5, 0.2],
+            rotate: [90, 0, 90]
+          }}
+          transition={{ duration: 10, repeat: Infinity }}
+        />
+        <motion.div 
+          className="absolute top-1/2 left-1/2 w-96 h-96 bg-gradient-to-br from-indigo-500/10 to-purple-500/20 rounded-full blur-3xl"
+          animate={{ 
+            scale: [0.8, 1.2, 0.8],
+            opacity: [0.1, 0.3, 0.1],
+            rotate: [0, 180, 360]
+          }}
+          transition={{ duration: 15, repeat: Infinity }}
+        />
+      </div>
+      
+      <div className="relative z-10">
+        {/* Blue Toned Header */}
+        <header className="relative bg-blue-900/80 backdrop-blur-xl border-b border-blue-400/20 sticky top-0 z-50">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/80 to-indigo-900/90 pointer-events-none"></div>
+          
+          <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div className="flex justify-between items-center py-4">
+              {/* Logo Section with Typing Animation */}
+              <motion.div 
+                className="flex items-center space-x-4"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="flex items-center space-x-3">
+                  <motion.div 
+                    className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg"
+                    initial={{ scale: 0, rotate: 180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                  >
+                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                  </motion.div>
+                  <div>
+                    <TypewriterText 
+                      text="CyberThink" 
+                      className="text-xl font-bold bg-gradient-to-r from-white via-cyan-100 to-blue-100 bg-clip-text text-transparent"
+                      delay={1000}
+                      speed={100}
+                    />
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Blue Themed Navigation */}
+              <motion.nav 
+                className="hidden md:flex items-center space-x-8"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                {[
+                  { name: 'Product', href: '/' },
+                  { name: 'Pricing', href: '/pricing' },
+                  { name: 'Resources', href: '/resources' },
+                  { name: 'Blog', href: '/blog' }
+                ].map((item, index) => (
+                  <Link key={item.name} href={item.href}>
+                    <motion.span
+                      className="text-blue-200 hover:text-white font-medium transition-colors cursor-pointer"
+                      whileHover={{ y: -1 }}
+                    >
+                      {item.name}
+                    </motion.span>
+                  </Link>
+                ))}
+                
+                {/* Auth Buttons */}
+                <div className="flex items-center space-x-3 ml-6">
+                  <button className="text-blue-200 hover:text-white font-medium transition-colors">
+                    Login
+                  </button>
+                  <button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-cyan-500/25">
+                    Sign up
+                  </button>
+                </div>
+              </motion.nav>
+            </div>
+          </div>
+        </header>
+
+        {/* Main Content Area */}
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 space-y-24">
+          
+          {/* Hero Section with Dashboard Preview */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center min-h-screen">
+            {/* Left Content */}
+            <motion.div 
+              className="space-y-8"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="space-y-6">
+                {/* Urgency Banner */}
+                <motion.div
+                  className="bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-400/30 rounded-full px-4 py-2 mb-6 inline-block"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.1, duration: 0.8 }}
+                >
+                  <span className="text-red-300 font-semibold text-sm">🚨 Cyber attacks increased 238% this year</span>
+                </motion.div>
+
+                <motion.h1 
+                  className="text-5xl md:text-6xl font-black text-white leading-tight"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.8 }}
+                >
+                  Stop hackers in
+                  <br />
+                  <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">5 minutes</span>
+                  <br />
+                  <span className="text-3xl md:text-4xl text-blue-200">with AI-powered security</span>
+                </motion.h1>
+                
+                <motion.p 
+                  className="text-xl text-blue-200 leading-relaxed max-w-lg"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
+                >
+                  <span className="text-cyan-300 font-bold">Reduce cyber threats by 94%</span> and{' '}
+                  <span className="text-cyan-300 font-bold">save $2.4M annually</span>. 
+                  CyberThink's enterprise platform protects{' '}
+                  <span className="font-semibold text-white">10,000+ organizations</span> worldwide with{' '}
+                  <span className="font-semibold text-white">99.9% uptime</span> and{' '}
+                  <span className="font-semibold text-white">5-minute setup</span>.
+                </motion.p>
+                
+                {/* Value Props */}
+                <motion.div 
+                  className="flex flex-wrap gap-4 mt-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.8 }}
+                >
+                  {[
+                    '✓ 5-minute deployment',
+                    '✓ SOC 2 Type II certified', 
+                    '✓ 24/7 threat monitoring'
+                  ].map((feature, index) => (
+                    <div key={index} className="flex items-center space-x-2 text-sm text-cyan-200">
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
+              
+              <motion.div 
+                className="flex items-center space-x-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+              >
+                {/* Primary CTA */}
+                <motion.button
+                  className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-bold px-8 py-4 rounded-lg transition-all duration-200 shadow-lg hover:shadow-cyan-500/25 text-lg"
+                  whileHover={{ y: -1, scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  🚀 Start Free Trial
+                </motion.button>
+                
+                {/* Secondary CTA */}
+                <motion.button
+                  className="text-cyan-300 hover:text-white font-semibold flex items-center space-x-2 group"
+                  whileHover={{ x: 4 }}
+                >
+                  <span>📊 See Live Demo</span>
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </motion.button>
+                
+                {/* Trust Signal */}
+                <motion.div 
+                  className="text-sm text-blue-300 mt-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1, duration: 0.8 }}
+                >
+                  ⭐ Trusted by Fortune 500 companies • No credit card required
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Dashboard Preview */}
+            <motion.div 
+              className="relative"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              {/* Main Dashboard Container */}
+              <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200">
+                {/* Dashboard Header */}
+                <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                  </div>
+                  <div className="flex items-center space-x-4 text-sm text-slate-600">
+                    <span>Dashboard</span>
+                    <span>Analytics</span>
+                    <span>Reports</span>
+                  </div>
+                </div>
+
+                {/* Dashboard Content */}
+                <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50">
+                  {/* Welcome Section */}
+                  <div className="mb-6">
+                    <h3 className="text-lg font-semibold text-slate-900 mb-1">Hey there, Security Team</h3>
+                    <p className="text-slate-600 text-sm">Here's what's happening with your security posture today.</p>
+                  </div>
+
+                  {/* Metrics Grid */}
+                  <div className="grid grid-cols-4 gap-4 mb-6">
+                    {[
+                      { label: 'Threats Blocked', value: '1,247', color: 'text-green-600' },
+                      { label: 'Active Alerts', value: '23', color: 'text-amber-600' },
+                      { label: 'Risk Score', value: '92', color: 'text-blue-600' },
+                      { label: 'Compliance', value: '98%', color: 'text-emerald-600' }
+                    ].map((metric, index) => (
+                      <div key={index} className="bg-white rounded-lg p-4 shadow-sm border border-slate-100">
+                        <div className={`text-2xl font-bold ${metric.color} mb-1`}>{metric.value}</div>
+                        <div className="text-xs text-slate-600">{metric.label}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Chart Area */}
+                  <div className="bg-white rounded-lg p-4 shadow-sm border border-slate-100 mb-4">
+                    <h4 className="text-sm font-semibold text-slate-900 mb-3">Threat Detection Over Time</h4>
+                    <div className="h-24 bg-gradient-to-r from-blue-100 to-indigo-100 rounded relative overflow-hidden">
+                      <svg className="absolute inset-0 w-full h-full">
+                        <path
+                          d="M0,60 Q25,40 50,45 T100,35 T150,50 T200,30 T250,40 T300,25"
+                          stroke="#3B82F6"
+                          strokeWidth="2"
+                          fill="none"
+                          className="animate-pulse"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Activity Feed */}
+                  <div className="bg-white rounded-lg p-4 shadow-sm border border-slate-100">
+                    <h4 className="text-sm font-semibold text-slate-900 mb-3">Recent Activity</h4>
+                    <div className="space-y-2">
+                      {[
+                        'Malware blocked from endpoint-007',
+                        'Suspicious login attempt detected',
+                        'Firewall rule updated successfully'
+                      ].map((activity, index) => (
+                        <div key={index} className="flex items-center space-x-2 text-xs text-slate-600">
+                          <div className="w-2 h-2 bg-blue-400 rounded-full flex-shrink-0"></div>
+                          <span>{activity}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Feature Icons */}
+              <motion.div
+                className="absolute -top-8 -left-8 bg-blue-600 text-white p-4 rounded-2xl shadow-lg"
+                animate={{ y: [-5, 5, -5] }}
+                transition={{ duration: 4, repeat: Infinity }}
+              >
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </motion.div>
+
+              <motion.div
+                className="absolute -bottom-6 -right-6 bg-emerald-600 text-white p-3 rounded-xl shadow-lg"
+                animate={{ y: [5, -5, 5] }}
+                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+              >
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </motion.div>
+
+              <motion.div
+                className="absolute top-1/2 -right-8 bg-purple-600 text-white p-3 rounded-xl shadow-lg"
+                animate={{ x: [-3, 3, -3] }}
+                transition={{ duration: 5, repeat: Infinity }}
+              >
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                </svg>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Social Proof Section */}
+          <motion.div 
+            className="text-center space-y-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+          >
+            {/* Customer Count */}
+            <div className="space-y-4">
+              <div className="text-6xl font-black bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                10,000+
+              </div>
+              <div className="text-blue-200 text-lg">companies protected worldwide</div>
+            </div>
+
+            {/* Testimonial */}
+            <motion.div 
+              className="max-w-4xl mx-auto bg-blue-800/30 backdrop-blur-lg border border-blue-600/30 rounded-2xl p-8"
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="text-2xl text-white font-semibold mb-4">
+                "CyberThink reduced our security incidents by 94% and saved us $2.4M in the first year alone."
+              </div>
+              <div className="flex items-center justify-center space-x-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold">
+                  JS
+                </div>
+                <div className="text-left">
+                  <div className="text-cyan-300 font-semibold">James Sullivan</div>
+                  <div className="text-blue-300 text-sm">CISO, TechCorp Inc.</div>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Integration Partners */}
+            <div className="space-y-6">
+              <div className="flex items-center justify-center space-x-2 text-sm text-blue-300">
+                <span>Seamlessly integrates with your existing tools</span>
+              </div>
+              
+              <div className="flex items-center justify-center space-x-12 opacity-70 hover:opacity-100 transition-all duration-300">
+                {[
+                  { name: 'Splunk', logo: 'S' },
+                  { name: 'Microsoft', logo: 'M' },
+                  { name: 'AWS', logo: 'A' },
+                  { name: 'Palo Alto', logo: 'P' },
+                  { name: 'CrowdStrike', logo: 'C' },
+                  { name: 'Okta', logo: 'O' },
+                  { name: 'ServiceNow', logo: 'SN' }
+                ].map((partner, index) => (
+                  <motion.div
+                    key={partner.name}
+                    className="w-12 h-12 bg-blue-800/40 backdrop-blur-sm rounded-lg flex items-center justify-center text-blue-200 font-semibold text-sm border border-blue-600/30 hover:border-cyan-400/50 hover:bg-blue-700/50 hover:text-white transition-all duration-200"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.2 + index * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    {partner.logo}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ROI-Focused Metrics Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <MetricCard
+              title="Threat Prevention"
+              value="94%"
+              change={8.2}
+              delay={0.1}
+              color="green"
+              trend={[85, 88, 92, 89, 94]}
+              icon={
+                <svg className="w-8 h-8 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              }
+            />
+            
+            <MetricCard
+              title="Setup Time"
+              value="5 min"
+              change={-75.5}
+              delay={0.2}
+              color="cyan"
+              trend={[20, 15, 10, 7, 5]}
+              icon={
+                <svg className="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              }
+            />
+            
+            <MetricCard
+              title="Customer ROI"
+              value="340%"
+              change={15.8}
+              delay={0.3}
+              color="purple"
+              trend={[250, 280, 310, 325, 340]}
+              icon={
+                <svg className="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              }
+            />
+            
+            <MetricCard
+              title="Annual Savings"
+              value="$2.4M"
+              change={12.8}
+              delay={0.4}
+              color="green"
+              trend={[1.8, 2.0, 2.2, 2.3, 2.4]}
+              icon={
+                <svg className="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                </svg>
+              }
+            />
+          </div>
+
+          {/* Benefit-Focused Features */}
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            {[
+              {
+                href: "/risk-appetite",
+                icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>,
+                title: "Stop Threats Instantly",
+                description: "AI-powered threat detection blocks 94% of cyber attacks in real-time. Reduce security incidents from dozens per month to less than 3.",
+                benefit: "94% threat reduction"
+              },
+              {
+                href: "/controls",
+                icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" /></svg>,
+                title: "Save $2.4M Annually",
+                description: "Eliminate expensive security breaches, reduce insurance premiums by 40%, and cut security team workload by 60%.",
+                benefit: "$2.4M average savings"
+              },
+              {
+                href: "/analytics",
+                icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
+                title: "Deploy in 5 Minutes",
+                description: "Complete security transformation without lengthy implementations. Full protection starts working in minutes, not months.",
+                benefit: "5-minute setup"
+              }
+            ].map((action, index) => (
+              <Link key={action.href} href={action.href} className="group">
+                <motion.div
+                  className="relative p-8 rounded-3xl bg-gradient-to-br from-white/5 via-white/[0.02] to-transparent backdrop-blur-xl border border-white/10 hover:border-blue-400/30 transition-all duration-500 overflow-hidden group-hover:shadow-2xl group-hover:shadow-blue-500/10"
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 + index * 0.1, duration: 0.6 }}
+                >
+                  {/* Background Effects */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/3 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  {/* Icon */}
+                  <motion.div 
+                    className="mb-6 p-4 w-fit bg-gradient-to-br from-blue-500/20 via-indigo-500/15 to-purple-500/20 rounded-2xl backdrop-blur-sm border border-blue-400/20"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="text-blue-400">
+                      {action.icon}
+                    </div>
+                  </motion.div>
+                  
+                  {/* Content */}
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-bold text-white group-hover:text-blue-100 transition-colors">
+                      {action.title}
+                    </h3>
+                    <p className="text-white/60 leading-relaxed group-hover:text-white/80 transition-colors">
+                      {action.description}
+                    </p>
+                    
+                    {/* Apple-style Learn More Link */}
+                    <motion.div 
+                      className="pt-2"
+                      initial={{ opacity: 0.7 }}
+                      whileHover={{ opacity: 1 }}
+                    >
+                      <span className="text-blue-400 hover:text-blue-300 font-medium text-sm transition-colors cursor-pointer">
+                        Learn more →
+                      </span>
+                    </motion.div>
+                  </div>
+                  
+                  {/* Apple-style Arrow Button */}
+                  <motion.div 
+                    className="absolute top-6 right-6 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/20 group-hover:border-white/30 transition-all duration-200"
+                    whileHover={{ scale: 1.1, x: 2 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <svg className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </motion.div>
+                  
+                  {/* Shimmer Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 transform translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
+                </motion.div>
+              </Link>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  )
+}
