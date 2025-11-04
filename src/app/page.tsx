@@ -506,6 +506,38 @@ export default function Dashboard() {
                   <span className="text-3xl md:text-4xl text-blue-200">Get instant cyber risk answers</span>
                 </motion.h1>
                 
+                {/* Think Risk Branding */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.2, duration: 1, ease: "easeOut" }}
+                  className="my-8"
+                >
+                  <div className="flex items-center justify-start space-x-4">
+                    <motion.div 
+                      className="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl border border-blue-400/30"
+                      initial={{ rotate: -180, scale: 0 }}
+                      animate={{ rotate: 0, scale: 1 }}
+                      transition={{ delay: 1.5, duration: 0.8, type: "spring", stiffness: 200 }}
+                    >
+                      <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </motion.div>
+                    <motion.h2 
+                      className="text-4xl md:text-6xl font-black tracking-tight"
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1.7, duration: 0.8 }}
+                    >
+                      <span className="text-white/90">Think</span>{' '}
+                      <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600 bg-clip-text text-transparent font-black">
+                        Risk
+                      </span>
+                    </motion.h2>
+                  </div>
+                </motion.div>
+                
                 <motion.p 
                   className="text-xl text-blue-200 leading-relaxed max-w-lg"
                   initial={{ opacity: 0, y: 20 }}
