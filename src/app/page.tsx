@@ -442,7 +442,7 @@ export default function Dashboard() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.1, duration: 0.8 }}
                 >
-                  <span className="text-red-300 font-semibold text-sm">🚨 Cyber attacks increased 238% this year</span>
+                  <span className="text-red-300 font-semibold text-sm">🚨 CISOs spend 3+ weeks just collecting risk data</span>
                 </motion.div>
 
                 <motion.h1 
@@ -451,11 +451,11 @@ export default function Dashboard() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
                 >
-                  Stop hackers in
+                  Stop wasting weeks
                   <br />
-                  <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">5 minutes</span>
+                  <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">collecting data</span>
                   <br />
-                  <span className="text-3xl md:text-4xl text-blue-200">with AI-powered security</span>
+                  <span className="text-3xl md:text-4xl text-blue-200">Get instant cyber risk answers</span>
                 </motion.h1>
                 
                 <motion.p 
@@ -464,12 +464,11 @@ export default function Dashboard() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                  <span className="text-cyan-300 font-bold">Reduce cyber threats by 94%</span> and{' '}
-                  <span className="text-cyan-300 font-bold">save $2.4M annually</span>. 
-                  CyberThink's enterprise platform protects{' '}
-                  <span className="font-semibold text-white">10,000+ organizations</span> worldwide with{' '}
-                  <span className="font-semibold text-white">99.9% uptime</span> and{' '}
-                  <span className="font-semibold text-white">5-minute setup</span>.
+                  <span className="text-cyan-300 font-bold">Intelligent cyber risk assistant</span> powered by{' '}
+                  <span className="text-cyan-300 font-bold">LLMs & real-time analytics</span>. 
+                  Ask questions in natural language, get{' '}
+                  <span className="font-semibold text-white">executive-ready reports</span> with{' '}
+                  <span className="font-semibold text-white">financial impact analysis</span> instantly.
                 </motion.p>
                 
                 {/* Value Props */}
@@ -480,9 +479,9 @@ export default function Dashboard() {
                   transition={{ delay: 0.6, duration: 0.8 }}
                 >
                   {[
-                    '✓ 5-minute deployment',
-                    '✓ SOC 2 Type II certified', 
-                    '✓ 24/7 threat monitoring'
+                    '✓ Natural language queries',
+                    '✓ Real-time data integration', 
+                    '✓ Executive-ready reports'
                   ].map((feature, index) => (
                     <div key={index} className="flex items-center space-x-2 text-sm text-cyan-200">
                       <span>{feature}</span>
@@ -705,6 +704,115 @@ export default function Dashboard() {
                     {partner.logo}
                   </motion.div>
                 ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Problem & Solution Section */}
+          <motion.div 
+            className="space-y-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {/* Problem */}
+            <div className="bg-gradient-to-br from-red-900/20 via-red-800/10 to-transparent backdrop-blur-xl border border-red-500/20 rounded-3xl p-12">
+              <div className="max-w-4xl mx-auto text-center space-y-6">
+                <motion.h2 
+                  className="text-4xl md:text-5xl font-black text-white mb-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  The <span className="text-red-400">Problem</span>
+                </motion.h2>
+                <motion.p 
+                  className="text-xl text-red-100 leading-relaxed"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  Today's CISOs waste <span className="font-bold text-white">weeks collecting scattered data</span> from IT teams, databases, and spreadsheets just to understand their risk exposure.
+                </motion.p>
+                <motion.p 
+                  className="text-lg text-red-200/90"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                >
+                  Reports are static, manual, and often <span className="font-semibold text-white">disconnected from financial impact</span> — leaving leadership blind to real cyber threats.
+                </motion.p>
+              </div>
+            </div>
+
+            {/* Solution */}
+            <div className="bg-gradient-to-br from-blue-900/30 via-cyan-800/20 to-transparent backdrop-blur-xl border border-cyan-500/20 rounded-3xl p-12">
+              <div className="max-w-4xl mx-auto text-center space-y-8">
+                <motion.h2 
+                  className="text-4xl md:text-5xl font-black text-white mb-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  Our <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Solution</span>
+                </motion.h2>
+                <motion.p 
+                  className="text-xl text-cyan-100 leading-relaxed mb-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  We built an <span className="font-bold text-white">intelligent cyber risk assistant</span> powered by LLMs, R analytics, and real-time data integration.
+                </motion.p>
+                
+                {/* Solution Features */}
+                <motion.div 
+                  className="grid md:grid-cols-2 gap-8 text-left"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                >
+                  <div className="space-y-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">1</span>
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold mb-2">Direct Integration</h4>
+                        <p className="text-cyan-200/90">Connects directly to servers, databases, and security logs.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">2</span>
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold mb-2">Natural Language Search</h4>
+                        <p className="text-cyan-200/90">Uses an LLM-based search engine so CISOs can ask questions in natural language — "Which servers have critical vulnerabilities?"</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">3</span>
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold mb-2">Financial Impact Analysis</h4>
+                        <p className="text-cyan-200/90">Calculates expected loss, residual risk, and VaR using R analytics.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-4">
+                      <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-sm font-bold">4</span>
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold mb-2">Executive Reports</h4>
+                        <p className="text-cyan-200/90">Generates interactive dashboards with instant updates and executive-ready written reports automatically, in plain business language.</p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
