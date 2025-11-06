@@ -956,6 +956,246 @@ export default function Dashboard() {
             />
           </div>
 
+          {/* Professional Risk Tolerance Gauge */}
+          <motion.div 
+            className="flex flex-col items-center justify-center py-20 px-8"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
+              Risk Tolerance Assessment
+            </h2>
+            <p className="text-xl text-cyan-200 mb-12 text-center max-w-2xl">
+              Advanced AI analytics continuously monitor your organization's risk appetite and security posture
+            </p>
+            
+            <div className="relative">
+              {/* Risk Tolerance Gauge SVG */}
+              <motion.svg
+                width="400"
+                height="300"
+                viewBox="0 0 400 300"
+                className="drop-shadow-2xl"
+                initial={{ rotate: -10 }}
+                animate={{ rotate: 0 }}
+                transition={{ duration: 1.5, delay: 0.5 }}
+              >
+                {/* Outer Ring - Background */}
+                <circle
+                  cx="200"
+                  cy="200"
+                  r="120"
+                  fill="none"
+                  stroke="#1f2937"
+                  strokeWidth="20"
+                  opacity="0.3"
+                />
+                
+                {/* Risk Sections */}
+                {/* Risk Appetite (Green) - 60 degrees */}
+                <motion.path
+                  d="M 200 80 A 120 120 0 0 1 303.92 140 L 290.78 156 A 100 100 0 0 0 200 100 Z"
+                  fill="#10b981"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1, duration: 0.8 }}
+                />
+                
+                {/* Risk Tolerance (Yellow) - 60 degrees */}
+                <motion.path
+                  d="M 303.92 140 A 120 120 0 0 1 303.92 260 L 290.78 244 A 100 100 0 0 0 290.78 156 Z"
+                  fill="#fbbf24"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.2, duration: 0.8 }}
+                />
+                
+                {/* Risk Threshold (Red) - 60 degrees */}
+                <motion.path
+                  d="M 303.92 260 A 120 120 0 0 1 96.08 260 L 109.22 244 A 100 100 0 0 0 290.78 244 Z"
+                  fill="#ef4444"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.4, duration: 0.8 }}
+                />
+                
+                {/* Inner Gauge Face */}
+                <circle
+                  cx="200"
+                  cy="200"
+                  r="100"
+                  fill="#374151"
+                  stroke="#6b7280"
+                  strokeWidth="2"
+                />
+                
+                {/* Gauge Markings */}
+                {Array.from({length: 7}, (_, i) => {
+                  const angle = -150 + (i * 30);
+                  const radian = (angle * Math.PI) / 180;
+                  const x1 = 200 + 85 * Math.cos(radian);
+                  const y1 = 200 + 85 * Math.sin(radian);
+                  const x2 = 200 + 75 * Math.cos(radian);
+                  const y2 = 200 + 75 * Math.sin(radian);
+                  
+                  return (
+                    <motion.line
+                      key={i}
+                      x1={x1}
+                      y1={y1}
+                      x2={x2}
+                      y2={y2}
+                      stroke="#9ca3af"
+                      strokeWidth="2"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.6 + i * 0.1 }}
+                    />
+                  );
+                })}
+                
+                {/* Animated Needle */}
+                <motion.g
+                  initial={{ rotate: -150 }}
+                  animate={{ rotate: -75 }}
+                  transition={{ 
+                    delay: 2,
+                    duration: 2,
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 10
+                  }}
+                  style={{ transformOrigin: "200px 200px" }}
+                >
+                  <line
+                    x1="200"
+                    y1="200"
+                    x2="200"
+                    y2="110"
+                    stroke="#ffffff"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                  />
+                  <circle
+                    cx="200"
+                    cy="200"
+                    r="8"
+                    fill="#ffffff"
+                  />
+                </motion.g>
+                
+                {/* Center Dot */}
+                <circle
+                  cx="200"
+                  cy="200"
+                  r="4"
+                  fill="#1f2937"
+                />
+                
+                {/* MIN MAX Labels */}
+                <text x="120" y="280" fill="#9ca3af" fontSize="12" fontWeight="bold" textAnchor="middle">MIN</text>
+                <text x="280" y="280" fill="#9ca3af" fontSize="12" fontWeight="bold" textAnchor="middle">MAX</text>
+                <text x="200" y="295" fill="#9ca3af" fontSize="10" fontWeight="bold" textAnchor="middle">RISK LEVEL</text>
+                
+                {/* Current Status Display */}
+                <rect x="150" y="240" width="100" height="30" rx="15" fill="#1f2937" fillOpacity="0.8"/>
+                <text x="200" y="260" fill="#10b981" fontSize="14" fontWeight="bold" textAnchor="middle">MODERATE</text>
+              </motion.svg>
+              
+              {/* Labels around the gauge */}
+              <motion.div
+                className="absolute -top-8 left-8 bg-green-600/90 backdrop-blur-sm text-white px-4 py-2 rounded-lg shadow-lg"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 2.5 }}
+              >
+                <div className="text-xs font-semibold">Apetito de riesgo</div>
+                <div className="text-xs opacity-80">Risk Appetite</div>
+              </motion.div>
+              
+              <motion.div
+                className="absolute -top-8 right-8 bg-yellow-600/90 backdrop-blur-sm text-white px-4 py-2 rounded-lg shadow-lg"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 2.7 }}
+              >
+                <div className="text-xs font-semibold">Tolerancia al riesgo</div>
+                <div className="text-xs opacity-80">Risk Tolerance</div>
+              </motion.div>
+              
+              <motion.div
+                className="absolute bottom-12 -right-8 bg-red-600/90 backdrop-blur-sm text-white px-4 py-2 rounded-lg shadow-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.9 }}
+              >
+                <div className="text-xs font-semibold">Umbral de riesgo</div>
+                <div className="text-xs opacity-80">Risk Threshold</div>
+              </motion.div>
+              
+              {/* Floating Analytics Indicators */}
+              {[...Array(4)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-3 h-3 bg-cyan-400 rounded-full opacity-60"
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0.6, 1, 0.6],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: i * 0.5,
+                  }}
+                  style={{
+                    left: `${50 + Math.sin(i * 90 * Math.PI / 180) * 160}px`,
+                    top: `${150 + Math.cos(i * 90 * Math.PI / 180) * 160}px`,
+                  }}
+                />
+              ))}
+            </div>
+            
+            {/* Risk Assessment Details */}
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-4xl"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 3 }}
+            >
+              <div className="bg-green-900/30 backdrop-blur-sm rounded-2xl p-6 border border-green-500/20 text-center">
+                <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-green-300 mb-2">Risk Appetite</h3>
+                <p className="text-green-100 text-sm">Acceptable risk level for business operations and growth objectives</p>
+              </div>
+              
+              <div className="bg-yellow-900/30 backdrop-blur-sm rounded-2xl p-6 border border-yellow-500/20 text-center">
+                <div className="w-12 h-12 bg-yellow-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-yellow-300 mb-2">Risk Tolerance</h3>
+                <p className="text-yellow-100 text-sm">Maximum deviation from risk appetite before action is required</p>
+              </div>
+              
+              <div className="bg-red-900/30 backdrop-blur-sm rounded-2xl p-6 border border-red-500/20 text-center">
+                <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-red-300 mb-2">Risk Threshold</h3>
+                <p className="text-red-100 text-sm">Critical limit requiring immediate intervention and risk mitigation</p>
+              </div>
+            </motion.div>
+          </motion.div>
+
           {/* Benefit-Focused Features */}
           <motion.div 
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
