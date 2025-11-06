@@ -958,7 +958,7 @@ export default function Dashboard() {
 
           {/* Professional Risk Tolerance Assessment */}
           <motion.div 
-            className="relative py-32 px-8 overflow-hidden"
+            className="relative py-16 md:py-32 px-4 md:px-8 overflow-hidden"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1.2 }}
@@ -986,22 +986,20 @@ export default function Dashboard() {
                   <span className="text-blue-300 text-sm font-medium tracking-wide">ENTERPRISE RISK MANAGEMENT</span>
                 </motion.div>
                 
-                <h2 className="text-5xl md:text-7xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-cyan-300">
+                <h2 className="text-3xl md:text-5xl lg:text-7xl font-extrabold mb-6 md:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-cyan-300">
                   Risk Tolerance Assessment
                 </h2>
-                <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-16">
+                <p className="text-base md:text-xl lg:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-12 md:mb-16 px-4">
                   Advanced AI analytics continuously monitor your organization's risk appetite and security posture with 
                   <span className="text-cyan-300 font-semibold"> real-time precision</span>
                 </p>
               </motion.div>
               
-              <div className="relative">
+              <div className="relative flex justify-center items-center px-4 md:px-0">
               {/* Risk Tolerance Gauge SVG */}
               <motion.svg
-                width="600"
-                height="450"
+                className="w-full max-w-md md:max-w-lg lg:max-w-xl drop-shadow-2xl"
                 viewBox="0 0 600 450"
-                className="drop-shadow-2xl"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.5, delay: 0.5 }}
@@ -1168,74 +1166,74 @@ export default function Dashboard() {
                 </defs>
               </motion.svg>
               
-              {/* Premium Floating Labels */}
+              {/* Premium Floating Labels - Responsive */}
               <motion.div
-                className="absolute -top-6 -left-4 bg-gradient-to-r from-green-600 to-emerald-500 text-white px-6 py-3 rounded-2xl shadow-2xl border border-green-400/30"
+                className="absolute -top-4 md:-top-6 -left-2 md:-left-4 bg-gradient-to-r from-green-600 to-emerald-500 text-white px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl shadow-2xl border border-green-400/30"
                 initial={{ opacity: 0, x: -30, y: 20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ delay: 3 }}
               >
-                <div className="text-sm font-bold">Apetito de riesgo</div>
-                <div className="text-xs opacity-90">Risk Appetite</div>
+                <div className="text-xs md:text-sm font-bold">Apetito de riesgo</div>
+                <div className="text-xs opacity-90 hidden md:block">Risk Appetite</div>
               </motion.div>
               
               <motion.div
-                className="absolute -top-6 -right-4 bg-gradient-to-r from-orange-600 to-amber-500 text-white px-6 py-3 rounded-2xl shadow-2xl border border-orange-400/30"
+                className="absolute -top-4 md:-top-6 -right-2 md:-right-4 bg-gradient-to-r from-orange-600 to-amber-500 text-white px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl shadow-2xl border border-orange-400/30"
                 initial={{ opacity: 0, x: 30, y: 20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ delay: 3.2 }}
               >
-                <div className="text-sm font-bold">Tolerancia al riesgo</div>
-                <div className="text-xs opacity-90">Risk Tolerance</div>
+                <div className="text-xs md:text-sm font-bold">Tolerancia al riesgo</div>
+                <div className="text-xs opacity-90 hidden md:block">Risk Tolerance</div>
               </motion.div>
               
               <motion.div
-                className="absolute bottom-8 -right-8 bg-gradient-to-r from-red-600 to-rose-500 text-white px-6 py-3 rounded-2xl shadow-2xl border border-red-400/30"
+                className="absolute bottom-4 md:bottom-8 -right-4 md:-right-8 bg-gradient-to-r from-red-600 to-rose-500 text-white px-3 py-2 md:px-6 md:py-3 rounded-xl md:rounded-2xl shadow-2xl border border-red-400/30"
                 initial={{ opacity: 0, x: 20, y: -20 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ delay: 3.4 }}
               >
-                <div className="text-sm font-bold">Umbral de riesgo</div>
-                <div className="text-xs opacity-90">Risk Threshold</div>
+                <div className="text-xs md:text-sm font-bold">Umbral de riesgo</div>
+                <div className="text-xs opacity-90 hidden md:block">Risk Threshold</div>
               </motion.div>
               </div>
             </div>
             
             {/* Risk Assessment Details */}
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-4xl"
+              className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-16 max-w-4xl px-4 md:px-0"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 3 }}
             >
-              <div className="bg-green-900/30 backdrop-blur-sm rounded-2xl p-6 border border-green-500/20 text-center">
-                <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <div className="bg-green-900/30 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-green-500/20 text-center">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-green-600 rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-4">
                   <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-green-300 mb-2">Risk Appetite</h3>
-                <p className="text-green-100 text-sm">Acceptable risk level for business operations and growth objectives</p>
+                <h3 className="text-base md:text-lg font-semibold text-green-300 mb-1 md:mb-2">Risk Appetite</h3>
+                <p className="text-green-100 text-xs md:text-sm">Acceptable risk level for business operations and growth objectives</p>
               </div>
               
-              <div className="bg-yellow-900/30 backdrop-blur-sm rounded-2xl p-6 border border-yellow-500/20 text-center">
-                <div className="w-12 h-12 bg-yellow-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <div className="bg-yellow-900/30 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-yellow-500/20 text-center">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-yellow-600 rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-4">
+                  <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-yellow-300 mb-2">Risk Tolerance</h3>
-                <p className="text-yellow-100 text-sm">Maximum deviation from risk appetite before action is required</p>
+                <h3 className="text-base md:text-lg font-semibold text-yellow-300 mb-1 md:mb-2">Risk Tolerance</h3>
+                <p className="text-yellow-100 text-xs md:text-sm">Maximum deviation from risk appetite before action is required</p>
               </div>
               
-              <div className="bg-red-900/30 backdrop-blur-sm rounded-2xl p-6 border border-red-500/20 text-center">
-                <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <div className="bg-red-900/30 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-red-500/20 text-center">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-red-600 rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-4">
+                  <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-red-300 mb-2">Risk Threshold</h3>
-                <p className="text-red-100 text-sm">Critical limit requiring immediate intervention and risk mitigation</p>
+                <h3 className="text-base md:text-lg font-semibold text-red-300 mb-1 md:mb-2">Risk Threshold</h3>
+                <p className="text-red-100 text-xs md:text-sm">Critical limit requiring immediate intervention and risk mitigation</p>
               </div>
             </motion.div>
           </motion.div>
