@@ -1084,7 +1084,7 @@ export default function Dashboard() {
                 {/* Enhanced Animated Needle */}
                 <motion.g
                   initial={{ rotate: -135 }}
-                  animate={{ rotate: -45 }}
+                  animate={{ rotate: -30 }}
                   transition={{ 
                     delay: 2.5,
                     duration: 2.5,
