@@ -956,89 +956,113 @@ export default function Dashboard() {
             />
           </div>
 
-          {/* Professional Risk Tolerance Gauge */}
+          {/* Professional Risk Tolerance Assessment */}
           <motion.div 
-            className="flex flex-col items-center justify-center py-20 px-8"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            className="relative py-32 px-8 overflow-hidden"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 text-center">
-              Risk Tolerance Assessment
-            </h2>
-            <p className="text-xl text-cyan-200 mb-12 text-center max-w-2xl">
-              Advanced AI analytics continuously monitor your organization's risk appetite and security posture
-            </p>
+            {/* Premium Background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-900/50 to-slate-900"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
             
-            <div className="relative">
+            <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center">
+              {/* Enhanced Header */}
+              <motion.div
+                className="text-center mb-20"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <motion.div
+                  className="inline-flex items-center px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full mb-8"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 animate-pulse"></div>
+                  <span className="text-blue-300 text-sm font-medium tracking-wide">ENTERPRISE RISK MANAGEMENT</span>
+                </motion.div>
+                
+                <h2 className="text-5xl md:text-7xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-cyan-300">
+                  Risk Tolerance Assessment
+                </h2>
+                <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-16">
+                  Advanced AI analytics continuously monitor your organization's risk appetite and security posture with 
+                  <span className="text-cyan-300 font-semibold"> real-time precision</span>
+                </p>
+              </motion.div>
+              
+              <div className="relative">
               {/* Risk Tolerance Gauge SVG */}
               <motion.svg
-                width="400"
-                height="300"
-                viewBox="0 0 400 300"
+                width="600"
+                height="450"
+                viewBox="0 0 600 450"
                 className="drop-shadow-2xl"
-                initial={{ rotate: -10 }}
-                animate={{ rotate: 0 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.5, delay: 0.5 }}
               >
                 {/* Outer Ring - Background */}
                 <circle
-                  cx="200"
-                  cy="200"
-                  r="120"
+                  cx="300"
+                  cy="300"
+                  r="180"
                   fill="none"
-                  stroke="#1f2937"
-                  strokeWidth="20"
-                  opacity="0.3"
+                  stroke="#1e293b"
+                  strokeWidth="12"
+                  opacity="0.2"
                 />
                 
-                {/* Risk Sections */}
-                {/* Risk Appetite (Green) - 60 degrees */}
+                {/* Risk Appetite Zone (Green) */}
                 <motion.path
-                  d="M 200 80 A 120 120 0 0 1 303.92 140 L 290.78 156 A 100 100 0 0 0 200 100 Z"
-                  fill="#10b981"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1, duration: 0.8 }}
+                  d="M 300 120 A 180 180 0 0 1 455.88 210 L 437.45 234 A 150 150 0 0 0 300 150 Z"
+                  fill="url(#greenGradient)"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 0.9 }}
+                  transition={{ delay: 1.2, duration: 1.5, ease: "easeOut" }}
                 />
                 
-                {/* Risk Tolerance (Yellow) - 60 degrees */}
+                {/* Risk Tolerance Zone (Orange) */}
                 <motion.path
-                  d="M 303.92 140 A 120 120 0 0 1 303.92 260 L 290.78 244 A 100 100 0 0 0 290.78 156 Z"
-                  fill="#fbbf24"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.2, duration: 0.8 }}
+                  d="M 455.88 210 A 180 180 0 0 1 455.88 390 L 437.45 366 A 150 150 0 0 0 437.45 234 Z"
+                  fill="url(#orangeGradient)"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 0.9 }}
+                  transition={{ delay: 1.5, duration: 1.5, ease: "easeOut" }}
                 />
                 
-                {/* Risk Threshold (Red) - 60 degrees */}
+                {/* Risk Threshold Zone (Red) */}
                 <motion.path
-                  d="M 303.92 260 A 120 120 0 0 1 96.08 260 L 109.22 244 A 100 100 0 0 0 290.78 244 Z"
-                  fill="#ef4444"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.4, duration: 0.8 }}
+                  d="M 455.88 390 A 180 180 0 0 1 144.12 390 L 162.55 366 A 150 150 0 0 0 437.45 366 Z"
+                  fill="url(#redGradient)"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 0.9 }}
+                  transition={{ delay: 1.8, duration: 1.5, ease: "easeOut" }}
                 />
                 
                 {/* Inner Gauge Face */}
                 <circle
-                  cx="200"
-                  cy="200"
-                  r="100"
-                  fill="#374151"
-                  stroke="#6b7280"
-                  strokeWidth="2"
+                  cx="300"
+                  cy="300"
+                  r="150"
+                  fill="url(#gaugeBackground)"
+                  stroke="#475569"
+                  strokeWidth="3"
                 />
                 
-                {/* Gauge Markings */}
-                {Array.from({length: 7}, (_, i) => {
-                  const angle = -150 + (i * 30);
+                {/* Enhanced Gauge Markings */}
+                {Array.from({length: 9}, (_, i) => {
+                  const angle = -135 + (i * 22.5);
                   const radian = (angle * Math.PI) / 180;
-                  const x1 = 200 + 85 * Math.cos(radian);
-                  const y1 = 200 + 85 * Math.sin(radian);
-                  const x2 = 200 + 75 * Math.cos(radian);
-                  const y2 = 200 + 75 * Math.sin(radian);
+                  const isMainMark = i % 2 === 0;
+                  const x1 = 300 + 135 * Math.cos(radian);
+                  const y1 = 300 + 135 * Math.sin(radian);
+                  const x2 = 300 + (isMainMark ? 115 : 125) * Math.cos(radian);
+                  const y2 = 300 + (isMainMark ? 115 : 125) * Math.sin(radian);
                   
                   return (
                     <motion.line
@@ -1047,114 +1071,134 @@ export default function Dashboard() {
                       y1={y1}
                       x2={x2}
                       y2={y2}
-                      stroke="#9ca3af"
-                      strokeWidth="2"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 1.6 + i * 0.1 }}
+                      stroke={isMainMark ? "#cbd5e1" : "#64748b"}
+                      strokeWidth={isMainMark ? "4" : "2"}
+                      strokeLinecap="round"
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 2 + i * 0.1 }}
                     />
                   );
                 })}
                 
-                {/* Animated Needle */}
+                {/* Enhanced Animated Needle */}
                 <motion.g
-                  initial={{ rotate: -150 }}
-                  animate={{ rotate: -75 }}
+                  initial={{ rotate: -135 }}
+                  animate={{ rotate: -45 }}
                   transition={{ 
-                    delay: 2,
-                    duration: 2,
+                    delay: 2.5,
+                    duration: 2.5,
                     type: "spring",
-                    stiffness: 100,
-                    damping: 10
+                    stiffness: 60,
+                    damping: 8
                   }}
-                  style={{ transformOrigin: "200px 200px" }}
+                  style={{ transformOrigin: "300px 300px" }}
                 >
+                  {/* Needle Shadow */}
                   <line
-                    x1="200"
-                    y1="200"
-                    x2="200"
-                    y2="110"
+                    x1="300"
+                    y1="300"
+                    x2="302"
+                    y2="170"
+                    stroke="#000000"
+                    strokeWidth="8"
+                    strokeLinecap="round"
+                    opacity="0.2"
+                  />
+                  {/* Main Needle */}
+                  <line
+                    x1="300"
+                    y1="300"
+                    x2="300"
+                    y2="165"
                     stroke="#ffffff"
-                    strokeWidth="4"
+                    strokeWidth="6"
                     strokeLinecap="round"
                   />
+                  {/* Needle Base */}
                   <circle
-                    cx="200"
-                    cy="200"
-                    r="8"
-                    fill="#ffffff"
+                    cx="300"
+                    cy="300"
+                    r="15"
+                    fill="#64748b"
+                    stroke="#475569"
+                    strokeWidth="3"
                   />
                 </motion.g>
                 
-                {/* Center Dot */}
+                {/* Center Pin */}
                 <circle
-                  cx="200"
-                  cy="200"
-                  r="4"
-                  fill="#1f2937"
+                  cx="300"
+                  cy="300"
+                  r="8"
+                  fill="#1e293b"
                 />
                 
-                {/* MIN MAX Labels */}
-                <text x="120" y="280" fill="#9ca3af" fontSize="12" fontWeight="bold" textAnchor="middle">MIN</text>
-                <text x="280" y="280" fill="#9ca3af" fontSize="12" fontWeight="bold" textAnchor="middle">MAX</text>
-                <text x="200" y="295" fill="#9ca3af" fontSize="10" fontWeight="bold" textAnchor="middle">RISK LEVEL</text>
+                {/* Labels */}
+                <text x="200" y="420" fill="#94a3b8" fontSize="20" fontWeight="600" textAnchor="middle">MIN</text>
+                <text x="400" y="420" fill="#94a3b8" fontSize="20" fontWeight="600" textAnchor="middle">MAX</text>
+                <text x="300" y="440" fill="#64748b" fontSize="14" fontWeight="500" textAnchor="middle" letterSpacing="2px">RISK LEVEL</text>
                 
                 {/* Current Status Display */}
-                <rect x="150" y="240" width="100" height="30" rx="15" fill="#1f2937" fillOpacity="0.8"/>
-                <text x="200" y="260" fill="#10b981" fontSize="14" fontWeight="bold" textAnchor="middle">MODERATE</text>
+                <rect x="225" y="360" width="150" height="45" rx="22" fill="url(#statusBackground)" stroke="#22c55e" strokeWidth="2"/>
+                <text x="300" y="390" fill="#22c55e" fontSize="18" fontWeight="700" textAnchor="middle" letterSpacing="1px">MODERATE</text>
+                
+                {/* Gradient Definitions */}
+                <defs>
+                  <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#10b981" stopOpacity="0.9"/>
+                    <stop offset="100%" stopColor="#34d399" stopOpacity="0.7"/>
+                  </linearGradient>
+                  <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.9"/>
+                    <stop offset="100%" stopColor="#fbbf24" stopOpacity="0.7"/>
+                  </linearGradient>
+                  <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#ef4444" stopOpacity="0.9"/>
+                    <stop offset="100%" stopColor="#f87171" stopOpacity="0.7"/>
+                  </linearGradient>
+                  <radialGradient id="gaugeBackground" cx="50%" cy="30%">
+                    <stop offset="0%" stopColor="#475569"/>
+                    <stop offset="100%" stopColor="#334155"/>
+                  </radialGradient>
+                  <radialGradient id="statusBackground" cx="50%" cy="50%">
+                    <stop offset="0%" stopColor="#1e293b" stopOpacity="0.9"/>
+                    <stop offset="100%" stopColor="#0f172a" stopOpacity="0.7"/>
+                  </radialGradient>
+                </defs>
               </motion.svg>
               
-              {/* Labels around the gauge */}
+              {/* Premium Floating Labels */}
               <motion.div
-                className="absolute -top-8 left-8 bg-green-600/90 backdrop-blur-sm text-white px-4 py-2 rounded-lg shadow-lg"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 2.5 }}
+                className="absolute -top-6 -left-4 bg-gradient-to-r from-green-600 to-emerald-500 text-white px-6 py-3 rounded-2xl shadow-2xl border border-green-400/30"
+                initial={{ opacity: 0, x: -30, y: 20 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ delay: 3 }}
               >
-                <div className="text-xs font-semibold">Apetito de riesgo</div>
-                <div className="text-xs opacity-80">Risk Appetite</div>
+                <div className="text-sm font-bold">Apetito de riesgo</div>
+                <div className="text-xs opacity-90">Risk Appetite</div>
               </motion.div>
               
               <motion.div
-                className="absolute -top-8 right-8 bg-yellow-600/90 backdrop-blur-sm text-white px-4 py-2 rounded-lg shadow-lg"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 2.7 }}
+                className="absolute -top-6 -right-4 bg-gradient-to-r from-orange-600 to-amber-500 text-white px-6 py-3 rounded-2xl shadow-2xl border border-orange-400/30"
+                initial={{ opacity: 0, x: 30, y: 20 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ delay: 3.2 }}
               >
-                <div className="text-xs font-semibold">Tolerancia al riesgo</div>
-                <div className="text-xs opacity-80">Risk Tolerance</div>
+                <div className="text-sm font-bold">Tolerancia al riesgo</div>
+                <div className="text-xs opacity-90">Risk Tolerance</div>
               </motion.div>
               
               <motion.div
-                className="absolute bottom-12 -right-8 bg-red-600/90 backdrop-blur-sm text-white px-4 py-2 rounded-lg shadow-lg"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 2.9 }}
+                className="absolute bottom-8 -right-8 bg-gradient-to-r from-red-600 to-rose-500 text-white px-6 py-3 rounded-2xl shadow-2xl border border-red-400/30"
+                initial={{ opacity: 0, x: 20, y: -20 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ delay: 3.4 }}
               >
-                <div className="text-xs font-semibold">Umbral de riesgo</div>
-                <div className="text-xs opacity-80">Risk Threshold</div>
+                <div className="text-sm font-bold">Umbral de riesgo</div>
+                <div className="text-xs opacity-90">Risk Threshold</div>
               </motion.div>
-              
-              {/* Floating Analytics Indicators */}
-              {[...Array(4)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-3 h-3 bg-cyan-400 rounded-full opacity-60"
-                  animate={{
-                    scale: [1, 1.5, 1],
-                    opacity: [0.6, 1, 0.6],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: i * 0.5,
-                  }}
-                  style={{
-                    left: `${50 + Math.sin(i * 90 * Math.PI / 180) * 160}px`,
-                    top: `${150 + Math.cos(i * 90 * Math.PI / 180) * 160}px`,
-                  }}
-                />
-              ))}
+              </div>
             </div>
             
             {/* Risk Assessment Details */}
