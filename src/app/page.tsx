@@ -615,15 +615,15 @@ export default function Dashboard() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.8 }}
             >
-              <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
+              <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
                 {/* Problem Statement */}
                 <motion.div 
-                  className="space-y-8"
+                  className="space-y-6"
                   initial={{ opacity: 0, x: -40 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 1.4, duration: 0.8 }}
                 >
-                  <div className="space-y-6">
+                  <div className="space-y-4">
                     <motion.div 
                       className="inline-block"
                       initial={{ opacity: 0, scale: 0.8 }}
@@ -636,7 +636,7 @@ export default function Dashboard() {
                     </motion.div>
                     
                     <motion.h2 
-                      className="text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-tight"
+                      className="text-2xl md:text-3xl lg:text-4xl font-black text-white leading-tight"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 1.6, duration: 0.8 }}
@@ -646,12 +646,12 @@ export default function Dashboard() {
                   </div>
                   
                   <motion.div 
-                    className="space-y-6 text-lg lg:text-xl text-blue-100/90 leading-relaxed"
+                    className="space-y-4 text-base lg:text-lg text-blue-100/90 leading-relaxed"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.8, duration: 0.8 }}
                   >
-                    <p className="text-xl lg:text-2xl font-medium text-blue-200">
+                    <p className="text-lg lg:text-xl font-medium text-blue-200">
                       Organizations are increasingly investing in cybersecurity without a clear understanding of how much risk they are actually mitigating.
                     </p>
                     <p>
@@ -665,12 +665,12 @@ export default function Dashboard() {
 
                 {/* Solution Statement */}
                 <motion.div 
-                  className="space-y-8"
+                  className="space-y-6"
                   initial={{ opacity: 0, x: 40 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 1.6, duration: 0.8 }}
                 >
-                  <div className="space-y-6">
+                  <div className="space-y-4">
                     <motion.div 
                       className="inline-block"
                       initial={{ opacity: 0, scale: 0.8 }}
@@ -683,7 +683,7 @@ export default function Dashboard() {
                     </motion.div>
                     
                     <motion.h2 
-                      className="text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-tight"
+                      className="text-2xl md:text-3xl lg:text-4xl font-black text-white leading-tight"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 1.8, duration: 0.8 }}
@@ -693,12 +693,12 @@ export default function Dashboard() {
                   </div>
                   
                   <motion.div 
-                    className="space-y-6"
+                    className="space-y-4"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 2.0, duration: 0.8 }}
                   >
-                    <p className="text-xl lg:text-2xl font-medium text-blue-200 leading-relaxed">
+                    <p className="text-lg lg:text-xl font-medium text-blue-200 leading-relaxed">
                       An integrated model that combines{' '}
                       <span className="text-cyan-300 font-bold">artificial intelligence</span>,{' '}
                       <span className="text-cyan-300 font-bold">quantitative analytics</span>, and{' '}
@@ -709,7 +709,7 @@ export default function Dashboard() {
                   
                   {/* Solution Features */}
                   <motion.div 
-                    className="space-y-4 mt-8"
+                    className="space-y-3 mt-6"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 2.2, duration: 0.8 }}
@@ -722,17 +722,17 @@ export default function Dashboard() {
                     ].map((feature, index) => (
                       <motion.div 
                         key={index}
-                        className="flex items-center space-x-4 group"
+                        className="flex items-center space-x-3 group"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 2.4 + (index * 0.1), duration: 0.6 }}
                       >
                         <motion.div 
-                          className="w-3 h-3 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full flex-shrink-0"
+                          className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full flex-shrink-0"
                           whileHover={{ scale: 1.2 }}
                           transition={{ duration: 0.2 }}
                         />
-                        <span className="text-lg font-medium text-cyan-200 group-hover:text-cyan-100 transition-colors duration-200">
+                        <span className="text-base font-medium text-cyan-200 group-hover:text-cyan-100 transition-colors duration-200">
                           {feature}
                         </span>
                       </motion.div>
