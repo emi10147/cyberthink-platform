@@ -238,7 +238,7 @@ const MetricCard: React.FC<MetricCardProps> = ({ title, value, change, icon, del
               transition={{ duration: 2, repeat: Infinity }}
             >
               <span className="flex items-center gap-1">
-                {change > 0 ? '↗️' : '↘️'} {Math.abs(change)}%
+                {change > 0 ? '+' : '-'}{Math.abs(change)}%
               </span>
             </motion.div>
             
@@ -389,7 +389,7 @@ export default function Dashboard() {
               transition={{ delay: 0.5, duration: 0.8 }}
             >
               <TypewriterText 
-                text="🚀 CyberThink - Transforming Cyber Risk Management with AI Intelligence"
+                text="CyberThink - Transforming Cyber Risk Management with AI Intelligence"
                 className="text-lg md:text-xl font-bold bg-gradient-to-r from-white via-cyan-100 to-white bg-clip-text text-transparent"
                 delay={800}
                 speed={50}
@@ -582,7 +582,7 @@ export default function Dashboard() {
                   whileHover={{ y: -1, scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  🚀 Start Free Trial
+                  Start Free Trial
                 </motion.button>
                 
                 {/* Secondary CTA */}
@@ -590,7 +590,7 @@ export default function Dashboard() {
                   className="text-cyan-300 hover:text-white font-semibold flex items-center space-x-2 group"
                   whileHover={{ x: 4 }}
                 >
-                  <span>📊 See Live Demo</span>
+                  <span>See Live Demo</span>
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -603,7 +603,7 @@ export default function Dashboard() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1, duration: 0.8 }}
                 >
-                  ⭐ Trusted by Fortune 500 companies • No credit card required
+                  Trusted by Fortune 500 companies • No credit card required
                 </motion.div>
               </motion.div>
             </motion.div>
@@ -1250,8 +1250,8 @@ export default function Dashboard() {
                 href: "/risk-appetite",
                 icon: <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>,
                 title: "Stop Threats Instantly",
-                description: "AI-powered threat detection blocks 94% of cyber attacks in real-time. Reduce security incidents from dozens per month to less than 3.",
-                benefit: "94% threat reduction"
+                description: "AI-powered threat detection blocks 84% of cyber attacks in real-time. Reduce security incidents from dozens per month to less than 3.",
+                benefit: "84% threat reduction"
               },
               {
                 href: "/controls",
