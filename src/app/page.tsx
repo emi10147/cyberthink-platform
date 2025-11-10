@@ -608,6 +608,84 @@ export default function Dashboard() {
               </motion.div>
             </motion.div>
 
+            {/* Problem-Solution Section */}
+            <motion.div 
+              className="mt-24 mb-16 max-w-6xl mx-auto"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+            >
+              <div className="grid md:grid-cols-2 gap-12 items-center">
+                {/* Problem Statement */}
+                <motion.div 
+                  className="space-y-6"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.4, duration: 0.8 }}
+                >
+                  <div className="text-red-400 font-semibold text-sm uppercase tracking-wide">The Problem</div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+                    Cybersecurity investments without clear risk understanding
+                  </h2>
+                  <div className="space-y-4 text-blue-100 text-lg leading-relaxed">
+                    <p>
+                      Organizations are increasingly investing in cybersecurity without a clear understanding of how much risk they are actually mitigating.
+                    </p>
+                    <p>
+                      Decisions are often reactive and misaligned with corporate strategy.
+                    </p>
+                    <p>
+                      There is a lack of a quantitative, visual, and dynamic way to connect technical controls with risk exposure and business capability.
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Solution Statement */}
+                <motion.div 
+                  className="space-y-6"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.6, duration: 0.8 }}
+                >
+                  <div className="text-cyan-400 font-semibold text-sm uppercase tracking-wide">The Solution</div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+                    AI-powered integrated risk management
+                  </h2>
+                  <div className="space-y-4 text-blue-100 text-lg leading-relaxed">
+                    <p>
+                      An integrated model that combines <span className="text-cyan-300 font-semibold">artificial intelligence</span>, <span className="text-cyan-300 font-semibold">quantitative analytics</span>, and <span className="text-cyan-300 font-semibold">risk management expertise</span> to help organizations define, visualize, and manage their cyber risk and risk appetite.
+                    </p>
+                  </div>
+                  
+                  {/* Solution Features */}
+                  <motion.div 
+                    className="grid gap-3 mt-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.8, duration: 0.8 }}
+                  >
+                    {[
+                      'AI-driven risk quantification',
+                      'Visual risk exposure mapping', 
+                      'Strategic alignment analytics',
+                      'Real-time decision support'
+                    ].map((feature, index) => (
+                      <motion.div 
+                        key={index}
+                        className="flex items-center space-x-3 text-cyan-200"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 2 + (index * 0.1), duration: 0.6 }}
+                      >
+                        <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
+                        <span className="text-sm font-medium">{feature}</span>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </motion.div>
+              </div>
+            </motion.div>
+
             {/* Right Dashboard Preview */}
             <motion.div 
               className="relative"
