@@ -490,7 +490,7 @@ export default function Dashboard() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.1, duration: 0.8 }}
                 >
-                  <span className="text-red-300 font-semibold text-sm">🚨 CISOs spend 3+ weeks just collecting risk data</span>
+                  <span className="text-red-300 font-semibold text-sm">CISOs spend 3+ weeks just collecting risk data</span>
                 </motion.div>
 
                 <motion.h1 
