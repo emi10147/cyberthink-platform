@@ -610,125 +610,181 @@ export default function Dashboard() {
 
             {/* Problem-Solution Section */}
             <motion.div 
-              className="mt-32 mb-24 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12"
+              className="mt-20 mb-20 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.8 }}
             >
               {/* The Problem Section */}
               <motion.div 
-                className="text-center mb-20"
+                className="mb-16"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.4, duration: 0.8 }}
               >
-                <motion.h2 
-                  className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-8"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1.5, duration: 0.8 }}
-                >
-                  The <span className="text-red-400">Problem</span>
-                </motion.h2>
-                
-                <motion.div 
-                  className="max-w-5xl mx-auto space-y-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.7, duration: 0.8 }}
-                >
-                  <p className="text-xl lg:text-2xl text-blue-100 leading-relaxed">
-                    Today's CISOs waste <span className="font-bold text-white">weeks collecting scattered data</span> from IT teams, databases, and spreadsheets just to understand their risk exposure.
-                  </p>
+                <div className="text-center mb-12">
+                  <motion.div 
+                    className="inline-flex items-center space-x-2 bg-red-500/10 text-red-400 px-6 py-3 rounded-full text-sm font-semibold uppercase tracking-wider border border-red-500/20 mb-6"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.5, duration: 0.6 }}
+                  >
+                    <span className="w-2 h-2 bg-red-400 rounded-full"></span>
+                    <span>The Challenge</span>
+                  </motion.div>
                   
-                  <p className="text-lg lg:text-xl text-blue-200 leading-relaxed">
-                    Reports are static, manual, and often <span className="font-bold text-white">disconnected from financial impact</span> — leaving leadership blind to real cyber threats.
-                  </p>
-                </motion.div>
+                  <motion.h2 
+                    className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 leading-tight"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.6, duration: 0.8 }}
+                  >
+                    Manual Risk Assessment Is Broken
+                  </motion.h2>
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                  <motion.div 
+                    className="bg-gradient-to-br from-red-500/5 via-red-500/5 to-transparent border border-red-500/10 rounded-2xl p-8 backdrop-blur-sm"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 1.7, duration: 0.8 }}
+                  >
+                    <h3 className="text-xl font-bold text-red-300 mb-4">Time Wasted</h3>
+                    <p className="text-lg text-blue-100 leading-relaxed">
+                      CISOs spend <span className="font-bold text-white">3+ weeks</span> manually collecting scattered data from IT teams, databases, and spreadsheets just to understand basic risk exposure.
+                    </p>
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="bg-gradient-to-br from-red-500/5 via-red-500/5 to-transparent border border-red-500/10 rounded-2xl p-8 backdrop-blur-sm"
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 1.8, duration: 0.8 }}
+                  >
+                    <h3 className="text-xl font-bold text-red-300 mb-4">Blind Leadership</h3>
+                    <p className="text-lg text-blue-100 leading-relaxed">
+                      Reports are static, manual, and <span className="font-bold text-white">disconnected from financial impact</span> — leaving executives unable to make informed security decisions.
+                    </p>
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* Divider */}
+              <motion.div 
+                className="flex items-center justify-center my-16"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.9, duration: 0.8 }}
+              >
+                <div className="h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent w-full max-w-md"></div>
+                <div className="mx-6 w-3 h-3 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full"></div>
+                <div className="h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent w-full max-w-md"></div>
               </motion.div>
 
               {/* Our Solution Section */}
               <motion.div 
-                className="text-center mb-16"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.9, duration: 0.8 }}
+                transition={{ delay: 2.0, duration: 0.8 }}
               >
-                <motion.h2 
-                  className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-8"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 2.0, duration: 0.8 }}
-                >
-                  Our <span className="text-cyan-400">Solution</span>
-                </motion.h2>
-                
-                <motion.p 
-                  className="text-xl lg:text-2xl text-blue-100 leading-relaxed max-w-5xl mx-auto mb-12"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 2.2, duration: 0.8 }}
-                >
-                  We built an <span className="font-bold text-white">intelligent cyber risk assistant</span> powered by LLMs, R analytics, and real-time data integration.
-                </motion.p>
+                <div className="text-center mb-12">
+                  <motion.div 
+                    className="inline-flex items-center space-x-2 bg-cyan-500/10 text-cyan-400 px-6 py-3 rounded-full text-sm font-semibold uppercase tracking-wider border border-cyan-500/20 mb-6"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 2.1, duration: 0.6 }}
+                  >
+                    <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                    <span>Our Solution</span>
+                  </motion.div>
+                  
+                  <motion.h2 
+                    className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 leading-tight"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 2.2, duration: 0.8 }}
+                  >
+                    AI-Powered Risk Intelligence
+                  </motion.h2>
+                  
+                  <motion.p 
+                    className="text-xl text-blue-200 leading-relaxed max-w-4xl mx-auto"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 2.3, duration: 0.8 }}
+                  >
+                    An intelligent cyber risk assistant that combines <span className="font-semibold text-cyan-300">LLMs</span>, <span className="font-semibold text-cyan-300">advanced analytics</span>, and <span className="font-semibold text-cyan-300">real-time data integration</span> to deliver instant, executive-ready risk insights.
+                  </motion.p>
+                </div>
 
                 {/* Solution Features Grid */}
                 <motion.div 
-                  className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto"
+                  className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 2.4, duration: 0.8 }}
                 >
                   {[
                     {
-                      number: "1",
+                      number: "01",
                       title: "Direct Integration",
-                      description: "Connects directly to servers, databases, and security logs.",
-                      color: "cyan"
+                      description: "Seamlessly connects to servers, databases, and security infrastructure for real-time data collection.",
+                      icon: "🔗",
+                      color: "from-blue-500 to-cyan-500"
                     },
                     {
-                      number: "2", 
-                      title: "Natural Language Search",
-                      description: 'Uses an LLM-based search engine so CISOs can ask questions in natural language — "Which servers have critical vulnerabilities?"',
-                      color: "cyan"
+                      number: "02", 
+                      title: "Natural Language Queries",
+                      description: 'Ask complex questions in plain English: "Which critical assets have unpatched vulnerabilities?"',
+                      icon: "💬",
+                      color: "from-cyan-500 to-teal-500"
                     },
                     {
-                      number: "3",
-                      title: "Financial Impact Analysis", 
-                      description: "Calculates expected loss, residual risk, and VaR using R analytics.",
-                      color: "cyan"
+                      number: "03",
+                      title: "Financial Impact Modeling", 
+                      description: "Quantifies risk exposure with expected loss calculations, VaR analysis, and ROI projections.",
+                      icon: "📊",
+                      color: "from-teal-500 to-green-500"
                     },
                     {
-                      number: "4",
-                      title: "Executive Reports",
-                      description: "Generates interactive dashboards with instant updates and executive-ready written reports automatically, in plain business language.",
-                      color: "cyan"
+                      number: "04",
+                      title: "Executive Dashboards",
+                      description: "Auto-generated reports and interactive dashboards that translate technical risks into business language.",
+                      icon: "📈",
+                      color: "from-green-500 to-emerald-500"
                     }
                   ].map((feature, index) => (
                     <motion.div 
                       key={index}
-                      className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-left hover:bg-white/10 transition-all duration-300 group"
+                      className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 group"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 2.6 + (index * 0.1), duration: 0.6 }}
-                      whileHover={{ y: -4, scale: 1.02 }}
+                      transition={{ delay: 2.5 + (index * 0.1), duration: 0.6 }}
+                      whileHover={{ y: -8, scale: 1.02 }}
                     >
-                      <div className="flex items-start space-x-4">
-                        <motion.div 
-                          className={`w-10 h-10 bg-gradient-to-br from-${feature.color}-400 to-${feature.color}-600 rounded-xl flex items-center justify-center font-bold text-white text-lg shadow-lg flex-shrink-0`}
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          {feature.number}
-                        </motion.div>
-                        <div className="space-y-2">
-                          <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors duration-200">
-                            {feature.title}
-                          </h3>
-                          <p className="text-blue-200 leading-relaxed">
-                            {feature.description}
-                          </p>
+                      {/* Gradient Overlay */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-5 rounded-2xl group-hover:opacity-10 transition-opacity duration-300`}></div>
+                      
+                      <div className="relative z-10">
+                        <div className="flex items-center justify-between mb-4">
+                          <motion.div 
+                            className={`w-12 h-12 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center font-bold text-white text-sm shadow-lg`}
+                            whileHover={{ rotate: 5, scale: 1.1 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            {feature.number}
+                          </motion.div>
+                          <span className="text-2xl opacity-50">{feature.icon}</span>
                         </div>
+                        
+                        <h3 className="text-lg font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors duration-200">
+                          {feature.title}
+                        </h3>
+                        
+                        <p className="text-sm text-blue-200 leading-relaxed">
+                          {feature.description}
+                        </p>
                       </div>
                     </motion.div>
                   ))}
