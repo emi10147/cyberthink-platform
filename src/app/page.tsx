@@ -398,80 +398,138 @@ export default function Dashboard() {
           </div>
         </motion.div>
 
-        {/* Blue Toned Header */}
-        <header className="relative bg-blue-900/80 backdrop-blur-xl border-b border-blue-400/20 sticky top-0 z-50 mt-16">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/80 to-indigo-900/90 pointer-events-none"></div>
+        {/* Enhanced Professional Header */}
+        <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-2xl border-b border-slate-800/50 shadow-2xl">
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/98 via-slate-800/95 to-slate-900/98"></div>
           
           <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-            <div className="flex justify-between items-center py-4">
-              {/* Logo Section with Typing Animation */}
+            <div className="flex justify-between items-center h-20">
+              
+              {/* Enhanced Logo Section */}
               <motion.div 
                 className="flex items-center space-x-4"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-4">
                   <motion.div 
-                    className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg"
+                    className="relative w-12 h-12 bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-2xl border border-cyan-400/20"
                     initial={{ scale: 0, rotate: 180 }}
                     animate={{ scale: 1, rotate: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
+                    transition={{ duration: 0.8, delay: 0.5, type: "spring", stiffness: 200 }}
+                    whileHover={{ scale: 1.05, rotate: 5 }}
                   >
-                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl"></div>
+                    <svg className="w-7 h-7 text-white relative z-10" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </motion.div>
-                  <div>
+                  
+                  <div className="flex flex-col">
                     <TypewriterText 
                       text="CyberThink" 
-                      className="text-xl font-bold bg-gradient-to-r from-white via-cyan-100 to-blue-100 bg-clip-text text-transparent"
+                      className="text-2xl font-black tracking-tight bg-gradient-to-r from-white via-cyan-100 to-blue-100 bg-clip-text text-transparent"
                       delay={1000}
-                      speed={100}
+                      speed={80}
                     />
+                    <motion.span 
+                      className="text-xs font-semibold text-slate-400 tracking-wider uppercase"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 2.5, duration: 0.8 }}
+                    >
+                      AI Risk Intelligence
+                    </motion.span>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Blue Themed Navigation */}
+              {/* Enhanced Professional Navigation */}
               <motion.nav 
-                className="hidden md:flex items-center space-x-8"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                className="hidden lg:flex items-center space-x-1"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
               >
                 {[
-                  { name: 'Product', href: '/' },
-                  { name: 'Pricing', href: '/pricing' },
-                  { name: 'Resources', href: '/resources' },
-                  { name: 'Blog', href: '/blog' }
+                  { name: 'Platform', href: '/', description: 'AI-powered risk assessment' },
+                  { name: 'Solutions', href: '/solutions', description: 'Industry-specific tools' },
+                  { name: 'Enterprise', href: '/enterprise', description: 'For large organizations' },
+                  { name: 'Resources', href: '/resources', description: 'Guides and insights' },
+                  { name: 'Pricing', href: '/pricing', description: 'Flexible plans' }
                 ].map((item, index) => (
-                  <Link key={item.name} href={item.href}>
-                    <motion.span
-                      className="text-blue-200 hover:text-white font-medium transition-colors cursor-pointer"
-                      whileHover={{ y: -1 }}
-                    >
-                      {item.name}
-                    </motion.span>
-                  </Link>
+                  <motion.div 
+                    key={item.name}
+                    className="relative group"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
+                  >
+                    <Link href={item.href}>
+                      <div className="relative px-4 py-3 rounded-xl transition-all duration-300 hover:bg-slate-800/50 group-hover:backdrop-blur-xl">
+                        <motion.span
+                          className="text-slate-300 hover:text-white font-semibold text-sm tracking-wide transition-colors duration-300 group-hover:text-cyan-300"
+                          whileHover={{ y: -1 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          {item.name}
+                        </motion.span>
+                        
+                        {/* Hover tooltip */}
+                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+                          <div className="bg-slate-800/95 backdrop-blur-xl border border-slate-700/50 rounded-lg px-3 py-2 shadow-2xl">
+                            <p className="text-xs text-slate-300 whitespace-nowrap font-medium">{item.description}</p>
+                            <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-slate-800 border-l border-t border-slate-700/50 rotate-45"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </motion.div>
                 ))}
-                
-                {/* Auth Buttons */}
-                <div className="flex items-center space-x-3 ml-6">
-                  <button className="text-blue-200 hover:text-white font-medium transition-colors">
-                    Login
-                  </button>
-                  <button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-cyan-500/25">
-                    Sign up
-                  </button>
-                </div>
               </motion.nav>
+
+              {/* Enhanced Auth Section */}
+              <motion.div 
+                className="flex items-center space-x-4"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <motion.button 
+                  className="hidden md:block text-slate-300 hover:text-white font-semibold text-sm transition-colors duration-300 px-4 py-2 rounded-lg hover:bg-slate-800/50"
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Sign In
+                </motion.button>
+                
+                <motion.button 
+                  className="relative bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600 hover:from-cyan-400 hover:via-blue-400 hover:to-indigo-500 text-white font-bold text-sm px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 border border-cyan-400/20"
+                  whileHover={{ y: -2, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-xl"></div>
+                  <span className="relative z-10 tracking-wide font-semibold">Get Started</span>
+                </motion.button>
+
+                {/* Mobile Menu Button */}
+                <motion.button 
+                  className="lg:hidden p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/50 transition-colors duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </motion.button>
+              </motion.div>
             </div>
           </div>
         </header>
 
         {/* Main Content Area */}
-        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 space-y-24">
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-24 pb-16 space-y-24">
           
           {/* Hero Section with Dashboard Preview */}
           <div className="grid lg:grid-cols-2 gap-16 items-center min-h-screen">
