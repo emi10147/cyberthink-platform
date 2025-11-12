@@ -482,19 +482,19 @@ export default function Home() {
       </motion.header>
 
       {/* Majestic Main Content */}
-      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
+      <main className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
         {/* Main Dashboard Layout */}
-        <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-16 mb-12 md:mb-20 min-h-[80vh]">
+        <div className="flex flex-col xl:flex-row items-center xl:items-start justify-center xl:justify-between gap-12 lg:gap-16 xl:gap-24 mb-12 md:mb-20 min-h-[80vh] px-4">
           {/* Left Side - CyberThink Logo */}
           <motion.div 
-            className="flex-shrink-0 lg:w-80 self-start lg:self-center"
+            className="flex-shrink-0 w-full xl:w-96 flex justify-center xl:justify-start xl:self-center"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
             <motion.div
-              className="flex items-center space-x-4 mb-8"
-              whileHover={{ scale: 1.05 }}
+              className="flex items-center space-x-3 md:space-x-4 mb-8"
+              whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
               {/* CyberThink Logo */}
@@ -516,10 +516,10 @@ export default function Home() {
                 />
                 
                 {/* Logo Container */}
-                <div className="relative w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-green-400 via-emerald-400 to-green-500 rounded-3xl shadow-2xl flex items-center justify-center">
+                <div className="relative w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-green-400 via-emerald-400 to-green-500 rounded-3xl shadow-2xl flex items-center justify-center">
                   {/* Stylized Logo Design */}
                   <motion.svg 
-                    className="w-12 h-12 md:w-14 md:h-14 text-white"
+                    className="w-8 h-8 md:w-10 md:h-10 text-white"
                     viewBox="0 0 100 100"
                     fill="none"
                     animate={{ 
@@ -571,7 +571,7 @@ export default function Home() {
               {/* CyberThink Text Logo */}
               <div>
                 <motion.h1 
-                  className="text-3xl md:text-4xl lg:text-5xl font-black text-white font-space-grotesk tracking-tight leading-none"
+                  className="text-2xl md:text-3xl lg:text-4xl font-black text-white font-space-grotesk tracking-tight leading-none"
                   animate={{ 
                     textShadow: [
                       "0 0 20px rgba(34, 197, 94, 0.3)",
@@ -608,7 +608,7 @@ export default function Home() {
 
           {/* Right Side - Dashboard Window */}
           <motion.div
-            className="flex-1 max-w-4xl"
+            className="flex-shrink-0 w-full xl:w-auto xl:flex-1 max-w-4xl"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
