@@ -46,41 +46,130 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({ text, className, delay 
   )
 }
 
-// Neural Network Background Component
+// Majestic Floating Particles Component
+const FloatingParticles = () => {
+  const [particles, setParticles] = useState<Array<{
+    id: number;
+    x: number;
+    y: number;
+    size: number;
+    delay: number;
+    duration: number;
+    color: string;
+  }>>([])
+  
+  useEffect(() => {
+    const newParticles = Array.from({ length: 40 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 4 + 2,
+      delay: Math.random() * 5,
+      duration: Math.random() * 20 + 15,
+      color: ['#3B82F6', '#8B5CF6', '#06B6D4', '#A855F7', '#EC4899'][Math.floor(Math.random() * 5)]
+    }))
+    setParticles(newParticles)
+  }, [])
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {particles.map(particle => (
+        <motion.div
+          key={particle.id}
+          className="absolute rounded-full opacity-20"
+          style={{ 
+            left: `${particle.x}%`, 
+            top: `${particle.y}%`, 
+            width: particle.size, 
+            height: particle.size,
+            backgroundColor: particle.color,
+            filter: 'blur(1px)'
+          }}
+          animate={{
+            y: [-50, 50],
+            x: [-20, 20],
+            opacity: [0.1, 0.6, 0.1],
+            scale: [0.5, 1.5, 0.5]
+          }}
+          transition={{
+            duration: particle.duration,
+            delay: particle.delay,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
+// Enhanced Neural Network Background Component
 const NeuralBackground = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 1200 800">
+    <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 1200 800">
       <defs>
         <linearGradient id="neuralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.3" />
-          <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.2" />
-          <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.1" />
+          <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.4" />
+          <stop offset="25%" stopColor="#8B5CF6" stopOpacity="0.6" />
+          <stop offset="50%" stopColor="#A855F7" stopOpacity="0.5" />
+          <stop offset="75%" stopColor="#EC4899" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.3" />
         </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+          <feMerge> 
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
       </defs>
       
       <motion.path
         d="M100,200 Q300,100 500,200 T900,200"
         stroke="url(#neuralGradient)"
-        strokeWidth="1"
+        strokeWidth="2"
         fill="none"
-        animate={{ pathLength: [0, 1, 0] }}
+        filter="url(#glow)"
+        animate={{ pathLength: [0, 1, 0], opacity: [0.3, 1, 0.3] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.path
         d="M200,400 Q400,300 600,400 T1000,400"
         stroke="url(#neuralGradient)"
-        strokeWidth="1"
+        strokeWidth="2"
         fill="none"
-        animate={{ pathLength: [0, 1, 0] }}
+        filter="url(#glow)"
+        animate={{ pathLength: [0, 1, 0], opacity: [0.3, 1, 0.3] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
       <motion.path
         d="M50,600 Q350,500 650,600 T1150,600"
         stroke="url(#neuralGradient)"
+        strokeWidth="2"
+        fill="none"
+        filter="url(#glow)"
+        animate={{ pathLength: [0, 1, 0], opacity: [0.3, 1, 0.3] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+      />
+      
+      {/* Additional crossing paths for complexity */}
+      <motion.path
+        d="M0,300 Q600,100 1200,300"
+        stroke="url(#neuralGradient)"
         strokeWidth="1"
         fill="none"
-        animate={{ pathLength: [0, 1, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+        filter="url(#glow)"
+        animate={{ pathLength: [0, 1, 0], opacity: [0.2, 0.8, 0.2] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
+      <motion.path
+        d="M0,500 Q600,700 1200,500"
+        stroke="url(#neuralGradient)"
+        strokeWidth="1"
+        fill="none"
+        filter="url(#glow)"
+        animate={{ pathLength: [0, 1, 0], opacity: [0.2, 0.8, 0.2] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 3 }}
       />
     </svg>
   </div>
@@ -234,19 +323,70 @@ const RiskGauge = () => {
         <text x="300" y="352" fill={risk.color} fontSize="16" fontWeight="700" textAnchor="middle">{risk.status}</text>
       </motion.svg>
       
-      {/* Risk Level Display */}
+      {/* Majestic Risk Level Display */}
       <motion.div
-        className="mt-8 text-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2 }}
+        className="mt-6 md:mt-12 text-center"
+        initial={{ opacity: 0, y: 30, scale: 0.8 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ delay: 2.5, duration: 0.8 }}
       >
-        <div className="text-5xl font-bold text-white mb-2 font-jetbrains-mono">
+        <motion.div 
+          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-3 md:mb-4 font-jetbrains-mono drop-shadow-2xl"
+          animate={{ 
+            textShadow: [
+              "0 0 20px rgba(255, 255, 255, 0.5)",
+              "0 0 40px rgba(255, 255, 255, 0.8)",
+              "0 0 20px rgba(255, 255, 255, 0.5)"
+            ],
+            scale: [1, 1.02, 1]
+          }}
+          transition={{ 
+            textShadow: { duration: 3, repeat: Infinity },
+            scale: { duration: 4, repeat: Infinity }
+          }}
+        >
           {Math.round(riskLevel)}%
-        </div>
-        <div className="text-blue-200 font-medium text-lg">
+        </motion.div>
+        
+        <motion.div 
+          className="text-purple-200 font-semibold text-base md:text-xl lg:text-2xl drop-shadow-lg"
+          animate={{ 
+            opacity: [0.7, 1, 0.7],
+            y: [0, -2, 0]
+          }}
+          transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+        >
           Current Risk Level
-        </div>
+        </motion.div>
+        
+        {/* Additional status indicators */}
+        <motion.div
+          className="mt-4 md:mt-6 flex justify-center space-x-2 md:space-x-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 3, duration: 0.8 }}
+        >
+          {['Real-time', 'Monitored', 'Secured'].map((status, index) => (
+            <motion.span
+              key={status}
+              className="px-2 md:px-3 py-1 bg-purple-500/20 border border-purple-400/30 rounded-full text-purple-200 text-xs md:text-sm font-medium"
+              animate={{ 
+                borderColor: [
+                  "rgba(168, 85, 247, 0.3)",
+                  "rgba(168, 85, 247, 0.6)", 
+                  "rgba(168, 85, 247, 0.3)"
+                ]
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                delay: index * 0.5
+              }}
+            >
+              {status}
+            </motion.span>
+          ))}
+        </motion.div>
       </motion.div>
     </div>
   )
@@ -254,198 +394,558 @@ const RiskGauge = () => {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden font-inter">
-      {/* Neural Network Background */}
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 via-purple-900 to-violet-900 relative overflow-hidden font-inter">
+      {/* Majestic Background Layers */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/50 via-transparent to-blue-900/50"></div>
+      <div className="absolute inset-0 bg-gradient-to-bl from-violet-900/30 via-transparent to-purple-900/30"></div>
+      <FloatingParticles />
       <NeuralBackground />
       
-      {/* Header */}
-      <header className="relative z-10 bg-slate-900/80 backdrop-blur-xl border-b border-blue-500/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      {/* Majestic Header */}
+      <motion.header 
+        className="relative z-10 bg-gradient-to-r from-slate-900/90 via-purple-900/80 to-slate-900/90 backdrop-blur-2xl border-b border-purple-500/30 shadow-2xl"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <motion.div 
+              className="flex items-center space-x-3 md:space-x-4"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              <motion.div 
+                className="w-10 h-10 md:w-14 md:h-14 bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-purple-500/30"
+                animate={{ 
+                  boxShadow: [
+                    "0 0 20px rgba(139, 92, 246, 0.3)",
+                    "0 0 30px rgba(139, 92, 246, 0.5)",
+                    "0 0 20px rgba(139, 92, 246, 0.3)"
+                  ]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                <svg className="w-5 h-5 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
-              </div>
+              </motion.div>
               <div>
-                <h1 className="text-2xl font-bold text-white font-poppins">
-                  <TypewriterText text="CyberThink" className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent" delay={500} speed={100} />
-                  <span className="text-slate-300 ml-2">Platform</span>
+                <h1 className="text-xl md:text-3xl font-bold text-white font-poppins leading-tight">
+                  <TypewriterText 
+                    text="CyberThink" 
+                    className="bg-gradient-to-r from-blue-300 via-purple-300 to-violet-300 bg-clip-text text-transparent drop-shadow-lg" 
+                    delay={500} 
+                    speed={120} 
+                  />
+                  <motion.span 
+                    className="text-slate-200 ml-2 drop-shadow-lg"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 2, duration: 0.8 }}
+                  >
+                    Platform
+                  </motion.span>
                 </h1>
-                <p className="text-blue-300 text-sm font-medium">Enterprise Risk Management</p>
+                <motion.p 
+                  className="text-purple-200 text-xs md:text-sm font-medium mt-1"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 2.5, duration: 0.8 }}
+                >
+                  Enterprise Risk Management
+                </motion.p>
               </div>
-            </div>
-            <div className="flex items-center space-x-3 text-sm text-blue-200">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
-              <span className="font-medium">System Active</span>
-            </div>
+            </motion.div>
+            <motion.div 
+              className="flex items-center space-x-2 md:space-x-3 text-xs md:text-sm text-purple-200"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1, duration: 0.8 }}
+            >
+              <motion.div 
+                className="w-2 h-2 md:w-3 md:h-3 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full shadow-lg"
+                animate={{ 
+                  scale: [1, 1.3, 1],
+                  boxShadow: [
+                    "0 0 5px rgba(34, 197, 94, 0.5)",
+                    "0 0 15px rgba(34, 197, 94, 0.8)",
+                    "0 0 5px rgba(34, 197, 94, 0.5)"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              <span className="font-medium drop-shadow-lg">System Active</span>
+            </motion.div>
           </div>
         </div>
-      </header>
+      </motion.header>
 
-      {/* Main Content */}
-      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-20">
-          <motion.h2
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 font-poppins"
+      {/* Majestic Main Content */}
+      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
+        <div className="text-center mb-12 md:mb-20">
+          <motion.div
+            className="mb-6 md:mb-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+          >
+            <motion.h2
+              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-poppins leading-tight"
+              animate={{ 
+                textShadow: [
+                  "0 0 20px rgba(139, 92, 246, 0.3)",
+                  "0 0 40px rgba(139, 92, 246, 0.5)",
+                  "0 0 20px rgba(139, 92, 246, 0.3)"
+                ]
+              }}
+              transition={{ duration: 4, repeat: Infinity }}
+            >
+              <motion.span 
+                className="block bg-gradient-to-r from-blue-300 via-purple-300 via-violet-300 to-cyan-300 bg-clip-text text-transparent"
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                style={{ backgroundSize: "200% 200%" }}
+                transition={{ duration: 5, repeat: Infinity }}
+              >
+                Risk Assessment
+              </motion.span>
+              <motion.span 
+                className="block text-white drop-shadow-2xl mt-2"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+              >
+                Dashboard
+              </motion.span>
+            </motion.h2>
+          </motion.div>
+          
+          <motion.p
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-purple-100 max-w-5xl mx-auto leading-relaxed font-light px-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
           >
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              Risk Assessment
-            </span>
-            <br />
-            <span className="text-white">Dashboard</span>
-          </motion.h2>
-          <motion.p
-            className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed font-light"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            Advanced real-time monitoring and assessment of organizational risk levels 
-            with <span className="text-cyan-300 font-medium">intelligent threat detection</span> and 
-            <span className="text-purple-300 font-medium"> predictive analytics</span>
+            <motion.span
+              animate={{ opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              Advanced real-time monitoring and assessment of organizational risk levels with{' '}
+            </motion.span>
+            <motion.span 
+              className="text-cyan-300 font-semibold drop-shadow-lg"
+              animate={{ 
+                color: ["#67E8F9", "#A78BFA", "#67E8F9"],
+                textShadow: [
+                  "0 0 10px rgba(103, 232, 249, 0.5)",
+                  "0 0 20px rgba(167, 139, 250, 0.5)",
+                  "0 0 10px rgba(103, 232, 249, 0.5)"
+                ]
+              }}
+              transition={{ duration: 4, repeat: Infinity }}
+            >
+              intelligent threat detection
+            </motion.span>
+            <span> and </span>
+            <motion.span 
+              className="text-violet-300 font-semibold drop-shadow-lg"
+              animate={{ 
+                color: ["#C4B5FD", "#F0ABFC", "#C4B5FD"],
+                textShadow: [
+                  "0 0 10px rgba(196, 181, 253, 0.5)",
+                  "0 0 20px rgba(240, 171, 252, 0.5)",
+                  "0 0 10px rgba(196, 181, 253, 0.5)"
+                ]
+              }}
+              transition={{ duration: 4, repeat: Infinity, delay: 2 }}
+            >
+              predictive analytics
+            </motion.span>
           </motion.p>
         </div>
 
-        {/* Risk Gauge */}
-        <div className="flex justify-center mb-20">
+        {/* Majestic Risk Gauge */}
+        <div className="flex justify-center mb-12 md:mb-20 px-4">
           <motion.div 
-            className="bg-slate-800/40 backdrop-blur-xl rounded-3xl shadow-2xl p-12 border border-blue-500/20 relative overflow-hidden"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
+            className="bg-gradient-to-br from-slate-800/60 via-purple-900/40 to-slate-800/60 backdrop-blur-2xl rounded-3xl md:rounded-4xl shadow-2xl p-6 md:p-12 border border-purple-500/30 relative overflow-hidden max-w-full"
+            initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
+            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+            transition={{ duration: 1.5, delay: 1 }}
+            whileHover={{ 
+              scale: 1.02,
+              boxShadow: "0 25px 50px -12px rgba(139, 92, 246, 0.25)",
+              border: "1px solid rgba(139, 92, 246, 0.5)"
+            }}
           >
-            {/* Glassmorphism effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-cyan-500/10 rounded-3xl"></div>
+            {/* Enhanced Glassmorphism effects */}
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/15 via-violet-500/20 to-cyan-500/15 rounded-3xl md:rounded-4xl"
+              animate={{ 
+                background: [
+                  "linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.15), rgba(168,85,247,0.2), rgba(6,182,212,0.15))",
+                  "linear-gradient(135deg, rgba(139,92,246,0.25), rgba(168,85,247,0.2), rgba(236,72,153,0.15), rgba(59,130,246,0.2))",
+                  "linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.15), rgba(168,85,247,0.2), rgba(6,182,212,0.15))"
+                ]
+              }}
+              transition={{ duration: 8, repeat: Infinity }}
+            />
+            
+            {/* Animated border glow */}
+            <motion.div
+              className="absolute -inset-1 bg-gradient-to-r from-purple-500/50 via-blue-500/30 via-violet-500/50 to-purple-500/50 rounded-3xl md:rounded-4xl blur-sm"
+              animate={{ 
+                opacity: [0.3, 0.8, 0.3],
+                scale: [0.98, 1.02, 0.98]
+              }}
+              transition={{ duration: 4, repeat: Infinity }}
+            />
+            
             <div className="relative z-10">
               <RiskGauge />
             </div>
           </motion.div>
         </div>
 
-        {/* Risk Categories */}
+        {/* Majestic Risk Categories */}
         <motion.div
-          className="grid md:grid-cols-3 gap-8 mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-12 md:mb-20 px-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.5 }}
         >
-          <motion.div 
-            className="bg-slate-800/40 backdrop-blur-xl rounded-2xl p-8 border border-green-500/20 hover:border-green-400/40 transition-all duration-300 group"
-            whileHover={{ y: -5, scale: 1.02 }}
-          >
-            <div className="w-14 h-14 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <svg className="w-7 h-7 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-3 font-poppins">Low Risk</h3>
-            <p className="text-slate-300 leading-relaxed">Acceptable operational parameters. Standard monitoring protocols in effect with minimal intervention required.</p>
-            <div className="mt-6 text-3xl font-bold text-green-400 font-jetbrains-mono">0-30%</div>
-          </motion.div>
-
-          <motion.div 
-            className="bg-slate-800/40 backdrop-blur-xl rounded-2xl p-8 border border-yellow-500/20 hover:border-yellow-400/40 transition-all duration-300 group"
-            whileHover={{ y: -5, scale: 1.02 }}
-          >
-            <div className="w-14 h-14 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <svg className="w-7 h-7 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-3 font-poppins">Moderate Risk</h3>
-            <p className="text-slate-300 leading-relaxed">Enhanced monitoring required. Review and adjust security measures with increased vigilance.</p>
-            <div className="mt-6 text-3xl font-bold text-yellow-400 font-jetbrains-mono">31-70%</div>
-          </motion.div>
-
-          <motion.div 
-            className="bg-slate-800/40 backdrop-blur-xl rounded-2xl p-8 border border-red-500/20 hover:border-red-400/40 transition-all duration-300 group"
-            whileHover={{ y: -5, scale: 1.02 }}
-          >
-            <div className="w-14 h-14 bg-gradient-to-r from-red-500/20 to-rose-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <svg className="w-7 h-7 text-red-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-3 font-poppins">High Risk</h3>
-            <p className="text-slate-300 leading-relaxed">Immediate attention required. Implement emergency protocols and comprehensive mitigation strategies.</p>
-            <div className="mt-6 text-3xl font-bold text-red-400 font-jetbrains-mono">71-100%</div>
-          </motion.div>
+          {[
+            {
+              title: "Low Risk",
+              description: "Acceptable operational parameters. Standard monitoring protocols in effect with minimal intervention required.",
+              percentage: "0-30%",
+              icon: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+              colors: {
+                border: "border-green-500/30",
+                hoverBorder: "hover:border-green-400/60",
+                iconBg: "from-green-500/30 to-emerald-500/30",
+                iconColor: "text-green-300",
+                textColor: "text-green-300",
+                glowColor: "rgba(34, 197, 94, 0.3)"
+              },
+              delay: 0
+            },
+            {
+              title: "Moderate Risk", 
+              description: "Enhanced monitoring required. Review and adjust security measures with increased vigilance.",
+              percentage: "31-70%",
+              icon: "M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z",
+              colors: {
+                border: "border-yellow-500/30",
+                hoverBorder: "hover:border-yellow-400/60", 
+                iconBg: "from-yellow-500/30 to-orange-500/30",
+                iconColor: "text-yellow-300",
+                textColor: "text-yellow-300",
+                glowColor: "rgba(251, 191, 36, 0.3)"
+              },
+              delay: 0.2
+            },
+            {
+              title: "High Risk",
+              description: "Immediate attention required. Implement emergency protocols and comprehensive mitigation strategies.", 
+              percentage: "71-100%",
+              icon: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z",
+              colors: {
+                border: "border-red-500/30",
+                hoverBorder: "hover:border-red-400/60",
+                iconBg: "from-red-500/30 to-rose-500/30", 
+                iconColor: "text-red-300",
+                textColor: "text-red-300",
+                glowColor: "rgba(239, 68, 68, 0.3)"
+              },
+              delay: 0.4
+            }
+          ].map((card, index) => (
+            <motion.div
+              key={index}
+              className={`bg-gradient-to-br from-slate-800/60 via-purple-900/30 to-slate-800/60 backdrop-blur-2xl rounded-2xl md:rounded-3xl p-6 md:p-8 ${card.colors.border} ${card.colors.hoverBorder} transition-all duration-500 group relative overflow-hidden`}
+              initial={{ opacity: 0, y: 50, rotateX: -10 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ duration: 0.8, delay: 1.5 + card.delay, ease: "easeOut" }}
+              whileHover={{ 
+                y: -10, 
+                scale: 1.03,
+                rotateX: 5,
+                boxShadow: `0 25px 50px -12px ${card.colors.glowColor}`
+              }}
+            >
+              {/* Animated background glow */}
+              <motion.div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                animate={{ 
+                  background: [
+                    `radial-gradient(circle at 20% 20%, ${card.colors.glowColor}, transparent 50%)`,
+                    `radial-gradient(circle at 80% 80%, ${card.colors.glowColor}, transparent 50%)`,
+                    `radial-gradient(circle at 20% 20%, ${card.colors.glowColor}, transparent 50%)`
+                  ]
+                }}
+                transition={{ duration: 4, repeat: Infinity }}
+              />
+              
+              <motion.div 
+                className={`w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r ${card.colors.iconBg} rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-all duration-500`}
+                animate={{ 
+                  rotate: [0, 5, -5, 0],
+                  scale: [1, 1.05, 1]
+                }}
+                transition={{ duration: 6, repeat: Infinity, delay: index * 2 }}
+              >
+                <svg className={`w-6 h-6 md:w-8 md:h-8 ${card.colors.iconColor} drop-shadow-lg`} fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d={card.icon} clipRule="evenodd" />
+                </svg>
+              </motion.div>
+              
+              <motion.h3 
+                className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4 font-poppins drop-shadow-lg"
+                animate={{ 
+                  textShadow: [
+                    "0 0 10px rgba(255, 255, 255, 0.3)",
+                    "0 0 20px rgba(255, 255, 255, 0.5)", 
+                    "0 0 10px rgba(255, 255, 255, 0.3)"
+                  ]
+                }}
+                transition={{ duration: 4, repeat: Infinity, delay: index * 1.5 }}
+              >
+                {card.title}
+              </motion.h3>
+              
+              <p className="text-purple-100 leading-relaxed mb-4 md:mb-6 text-sm md:text-base">
+                {card.description}
+              </p>
+              
+              <motion.div 
+                className={`text-2xl md:text-4xl font-bold ${card.colors.textColor} font-jetbrains-mono drop-shadow-lg`}
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                  textShadow: [
+                    `0 0 10px ${card.colors.glowColor}`,
+                    `0 0 20px ${card.colors.glowColor}`,
+                    `0 0 10px ${card.colors.glowColor}`
+                  ]
+                }}
+                transition={{ duration: 3, repeat: Infinity, delay: index * 1 }}
+              >
+                {card.percentage}
+              </motion.div>
+            </motion.div>
+          ))}
         </motion.div>
 
-        {/* Key Metrics */}
+        {/* Majestic Key Metrics */}
         <motion.div
-          className="bg-slate-800/40 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-purple-500/20 relative overflow-hidden"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
+          className="bg-gradient-to-br from-slate-800/70 via-purple-900/50 to-violet-900/60 backdrop-blur-2xl rounded-3xl md:rounded-4xl shadow-2xl p-6 md:p-12 border border-purple-500/30 relative overflow-hidden mx-4"
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1, delay: 2 }}
+          whileHover={{ 
+            scale: 1.02,
+            boxShadow: "0 25px 50px -12px rgba(139, 92, 246, 0.4)"
+          }}
         >
-          {/* Glassmorphism effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-blue-500/5 to-cyan-500/10 rounded-3xl"></div>
+          {/* Enhanced Glassmorphism effect */}
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-blue-500/10 via-violet-500/15 to-cyan-500/10 rounded-3xl md:rounded-4xl"
+            animate={{ 
+              background: [
+                "linear-gradient(135deg, rgba(139,92,246,0.2), rgba(59,130,246,0.1), rgba(168,85,247,0.15), rgba(6,182,212,0.1))",
+                "linear-gradient(135deg, rgba(168,85,247,0.25), rgba(139,92,246,0.15), rgba(236,72,153,0.1), rgba(59,130,246,0.15))",
+                "linear-gradient(135deg, rgba(139,92,246,0.2), rgba(59,130,246,0.1), rgba(168,85,247,0.15), rgba(6,182,212,0.1))"
+              ]
+            }}
+            transition={{ duration: 8, repeat: Infinity }}
+          />
+          
+          {/* Animated border glow */}
+          <motion.div
+            className="absolute -inset-1 bg-gradient-to-r from-purple-500/40 via-blue-500/20 via-violet-500/40 to-purple-500/40 rounded-3xl md:rounded-4xl blur-lg"
+            animate={{ 
+              opacity: [0.3, 0.8, 0.3],
+              scale: [0.98, 1.02, 0.98]
+            }}
+            transition={{ duration: 5, repeat: Infinity }}
+          />
+          
           <div className="relative z-10">
-            <h3 className="text-3xl font-bold text-white mb-12 text-center font-poppins">
-              System <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Performance</span>
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <motion.div 
-                className="text-center group"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
+            <motion.h3 
+              className="text-2xl md:text-4xl font-bold text-white mb-8 md:mb-16 text-center font-poppins"
+              animate={{ 
+                textShadow: [
+                  "0 0 20px rgba(255, 255, 255, 0.3)",
+                  "0 0 40px rgba(255, 255, 255, 0.5)",
+                  "0 0 20px rgba(255, 255, 255, 0.3)"
+                ]
+              }}
+              transition={{ duration: 4, repeat: Infinity }}
+            >
+              System{' '}
+              <motion.span 
+                className="bg-gradient-to-r from-purple-300 via-violet-300 to-cyan-300 bg-clip-text text-transparent"
+                animate={{ 
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+                }}
+                style={{ backgroundSize: "200% 200%" }}
+                transition={{ duration: 6, repeat: Infinity }}
               >
-                <div className="text-4xl font-bold text-white mb-2 font-jetbrains-mono group-hover:text-cyan-400 transition-colors duration-300">99.9%</div>
-                <div className="text-blue-200 font-medium">Uptime</div>
-              </motion.div>
-              <motion.div 
-                className="text-center group"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="text-4xl font-bold text-white mb-2 font-jetbrains-mono group-hover:text-purple-400 transition-colors duration-300">24/7</div>
-                <div className="text-blue-200 font-medium">Monitoring</div>
-              </motion.div>
-              <motion.div 
-                className="text-center group"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="text-4xl font-bold text-white mb-2 font-jetbrains-mono group-hover:text-green-400 transition-colors duration-300">&lt;100ms</div>
-                <div className="text-blue-200 font-medium">Response Time</div>
-              </motion.div>
-              <motion.div 
-                className="text-center group"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="text-4xl font-bold text-white mb-2 font-jetbrains-mono group-hover:text-yellow-400 transition-colors duration-300">Enterprise</div>
-                <div className="text-blue-200 font-medium">Grade Security</div>
-              </motion.div>
+                Performance
+              </motion.span>
+            </motion.h3>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+              {[
+                { value: "99.9%", label: "Uptime", color: "cyan", glow: "rgba(103, 232, 249, 0.5)" },
+                { value: "24/7", label: "Monitoring", color: "purple", glow: "rgba(139, 92, 246, 0.5)" },
+                { value: "<100ms", label: "Response Time", color: "green", glow: "rgba(34, 197, 94, 0.5)" },
+                { value: "Enterprise", label: "Grade Security", color: "yellow", glow: "rgba(251, 191, 36, 0.5)" }
+              ].map((metric, index) => (
+                <motion.div 
+                  key={index}
+                  className="text-center group"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 2.2 + index * 0.1 }}
+                  whileHover={{ 
+                    scale: 1.1,
+                    y: -5
+                  }}
+                >
+                  <motion.div 
+                    className={`text-2xl md:text-5xl font-bold text-white mb-2 md:mb-4 font-jetbrains-mono drop-shadow-lg group-hover:text-${metric.color}-300 transition-all duration-500`}
+                    animate={{ 
+                      textShadow: [
+                        `0 0 10px ${metric.glow}`,
+                        `0 0 30px ${metric.glow}`,
+                        `0 0 10px ${metric.glow}`
+                      ],
+                      scale: [1, 1.05, 1]
+                    }}
+                    transition={{ 
+                      textShadow: { duration: 3, repeat: Infinity, delay: index * 0.7 },
+                      scale: { duration: 4, repeat: Infinity, delay: index * 1 }
+                    }}
+                  >
+                    {metric.value}
+                  </motion.div>
+                  <motion.div 
+                    className="text-purple-200 font-semibold text-xs md:text-base drop-shadow-sm"
+                    animate={{ opacity: [0.7, 1, 0.7] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
+                  >
+                    {metric.label}
+                  </motion.div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </motion.div>
       </main>
 
-      {/* Footer */}
-      <footer className="relative z-10 bg-slate-900/80 backdrop-blur-xl border-t border-blue-500/20 py-12 mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Majestic Footer */}
+      <motion.footer 
+        className="relative z-10 bg-gradient-to-r from-slate-900/90 via-purple-900/80 to-slate-900/90 backdrop-blur-2xl border-t border-purple-500/30 py-8 md:py-16 mt-12 md:mt-20"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 2.5 }}
+      >
+        {/* Animated background glow */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-blue-500/5 to-purple-500/10"
+          animate={{ 
+            background: [
+              "linear-gradient(90deg, rgba(139,92,246,0.1), rgba(59,130,246,0.05), rgba(139,92,246,0.1))",
+              "linear-gradient(90deg, rgba(168,85,247,0.15), rgba(139,92,246,0.08), rgba(168,85,247,0.15))",
+              "linear-gradient(90deg, rgba(139,92,246,0.1), rgba(59,130,246,0.05), rgba(139,92,246,0.1))"
+            ]
+          }}
+          transition={{ duration: 8, repeat: Infinity }}
+        />
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="flex items-center justify-center space-x-4 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <motion.div 
+              className="flex items-center justify-center space-x-3 md:space-x-4 mb-6 md:mb-8"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              <motion.div 
+                className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 rounded-xl md:rounded-2xl flex items-center justify-center shadow-2xl"
+                animate={{ 
+                  boxShadow: [
+                    "0 0 20px rgba(139, 92, 246, 0.4)",
+                    "0 0 40px rgba(139, 92, 246, 0.6)",
+                    "0 0 20px rgba(139, 92, 246, 0.4)"
+                  ],
+                  rotate: [0, 5, -5, 0]
+                }}
+                transition={{ 
+                  boxShadow: { duration: 4, repeat: Infinity },
+                  rotate: { duration: 8, repeat: Infinity }
+                }}
+              >
+                <svg className="w-5 h-5 md:w-7 md:h-7 text-white drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-poppins">CyberThink Platform</span>
-            </div>
-            <p className="text-blue-200 font-medium">
+              </motion.div>
+              
+              <motion.span 
+                className="text-xl md:text-3xl font-bold bg-gradient-to-r from-blue-300 via-purple-300 to-violet-300 bg-clip-text text-transparent font-poppins drop-shadow-lg"
+                animate={{ 
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  textShadow: [
+                    "0 0 10px rgba(255, 255, 255, 0.3)",
+                    "0 0 20px rgba(255, 255, 255, 0.5)",
+                    "0 0 10px rgba(255, 255, 255, 0.3)"
+                  ]
+                }}
+                style={{ backgroundSize: "200% 200%" }}
+                transition={{ 
+                  backgroundPosition: { duration: 6, repeat: Infinity },
+                  textShadow: { duration: 4, repeat: Infinity }
+                }}
+              >
+                CyberThink Platform
+              </motion.span>
+            </motion.div>
+            
+            <motion.p 
+              className="text-purple-200 font-medium text-sm md:text-lg drop-shadow-sm"
+              animate={{ opacity: [0.8, 1, 0.8] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
               © 2024 CyberThink Platform. Advanced cybersecurity risk management solutions.
-            </p>
+            </motion.p>
+            
+            {/* Additional footer elements */}
+            <motion.div
+              className="mt-6 md:mt-8 flex justify-center space-x-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 3 }}
+            >
+              {['Security', 'Innovation', 'Excellence'].map((word, index) => (
+                <motion.span
+                  key={word}
+                  className="text-purple-300 text-xs md:text-sm font-medium"
+                  animate={{ 
+                    opacity: [0.6, 1, 0.6],
+                    y: [0, -2, 0]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: index * 0.7
+                  }}
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </motion.div>
           </div>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   )
 }
