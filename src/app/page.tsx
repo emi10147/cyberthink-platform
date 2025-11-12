@@ -483,13 +483,136 @@ export default function Home() {
 
       {/* Majestic Main Content */}
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
-        {/* Risk Overview Dashboard Window */}
-        <motion.div
-          className="mb-12 md:mb-20 max-w-5xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-        >
+        {/* Main Dashboard Layout */}
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-16 mb-12 md:mb-20 min-h-[80vh]">
+          {/* Left Side - CyberThink Logo */}
+          <motion.div 
+            className="flex-shrink-0 lg:w-80 self-start lg:self-center"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            <motion.div
+              className="flex items-center space-x-4 mb-8"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              {/* CyberThink Logo */}
+              <motion.div 
+                className="relative"
+                animate={{ 
+                  rotate: [0, 5, -5, 0],
+                }}
+                transition={{ duration: 6, repeat: Infinity }}
+              >
+                {/* Logo Background Glow */}
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 rounded-3xl blur-xl opacity-30"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.6, 0.3]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
+                
+                {/* Logo Container */}
+                <div className="relative w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-green-400 via-emerald-400 to-green-500 rounded-3xl shadow-2xl flex items-center justify-center">
+                  {/* Stylized Logo Design */}
+                  <motion.svg 
+                    className="w-12 h-12 md:w-14 md:h-14 text-white"
+                    viewBox="0 0 100 100"
+                    fill="none"
+                    animate={{ 
+                      rotate: [0, 360],
+                    }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  >
+                    {/* Outer Ring */}
+                    <motion.circle 
+                      cx="50" 
+                      cy="50" 
+                      r="45" 
+                      stroke="currentColor" 
+                      strokeWidth="3" 
+                      fill="none"
+                      strokeDasharray="20 10"
+                      animate={{ 
+                        strokeDashoffset: [0, -30],
+                      }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                    />
+                    
+                    {/* Inner Shield */}
+                    <motion.path 
+                      d="M30 40 L50 25 L70 40 L70 65 C70 72 62 78 50 80 C38 78 30 72 30 65 Z" 
+                      fill="currentColor"
+                      animate={{ 
+                        scale: [1, 1.1, 1],
+                      }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                    
+                    {/* Central Dot */}
+                    <motion.circle 
+                      cx="50" 
+                      cy="52" 
+                      r="8" 
+                      fill="rgba(255,255,255,0.3)"
+                      animate={{ 
+                        r: [6, 10, 6],
+                        opacity: [0.3, 0.8, 0.3]
+                      }}
+                      transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                    />
+                  </motion.svg>
+                </div>
+              </motion.div>
+              
+              {/* CyberThink Text Logo */}
+              <div>
+                <motion.h1 
+                  className="text-3xl md:text-4xl lg:text-5xl font-black text-white font-space-grotesk tracking-tight leading-none"
+                  animate={{ 
+                    textShadow: [
+                      "0 0 20px rgba(34, 197, 94, 0.3)",
+                      "0 0 40px rgba(34, 197, 94, 0.5)",
+                      "0 0 20px rgba(34, 197, 94, 0.3)"
+                    ]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                >
+                  <motion.span 
+                    className="bg-gradient-to-r from-green-300 via-emerald-300 to-green-400 bg-clip-text text-transparent drop-shadow-lg"
+                    animate={{ 
+                      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                    }}
+                    style={{ backgroundSize: "200% 200%" }}
+                    transition={{ duration: 5, repeat: Infinity }}
+                  >
+                    Cyber
+                  </motion.span>
+                  <span className="text-white drop-shadow-2xl">Think</span>
+                </motion.h1>
+                
+                <motion.p 
+                  className="text-emerald-200 text-sm md:text-base font-outfit tracking-wide mt-2 font-medium"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1, duration: 0.8 }}
+                >
+                  Enterprise Risk Management
+                </motion.p>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Side - Dashboard Window */}
+          <motion.div
+            className="flex-1 max-w-4xl"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
+          >
           {/* Window Container */}
           <motion.div 
             className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden border border-gray-200/50"
@@ -689,6 +812,7 @@ export default function Home() {
             </div>
           </motion.div>
         </motion.div>
+        </div>
 
         {/* Majestic Risk Gauge */}
         <div className="flex justify-center mb-12 md:mb-20 px-4">
