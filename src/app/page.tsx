@@ -331,7 +331,7 @@ const RiskGauge = () => {
         transition={{ delay: 2.5, duration: 0.8 }}
       >
         <motion.div 
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-3 md:mb-4 font-jetbrains-mono drop-shadow-2xl"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-3 md:mb-4 font-fira-code drop-shadow-2xl tabular-nums"
           animate={{ 
             textShadow: [
               "0 0 20px rgba(255, 255, 255, 0.5)",
@@ -349,7 +349,7 @@ const RiskGauge = () => {
         </motion.div>
         
         <motion.div 
-          className="text-purple-200 font-semibold text-base md:text-xl lg:text-2xl drop-shadow-lg"
+          className="text-purple-200 font-semibold text-base md:text-xl lg:text-2xl drop-shadow-lg font-outfit tracking-wide"
           animate={{ 
             opacity: [0.7, 1, 0.7],
             y: [0, -2, 0]
@@ -394,7 +394,7 @@ const RiskGauge = () => {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 via-purple-900 to-violet-900 relative overflow-hidden font-inter">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 via-purple-900 to-violet-900 relative overflow-hidden font-inter text-white">
       {/* Majestic Background Layers */}
       <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/50 via-transparent to-blue-900/50"></div>
       <div className="absolute inset-0 bg-gradient-to-bl from-violet-900/30 via-transparent to-purple-900/30"></div>
@@ -431,15 +431,15 @@ export default function Home() {
                 </svg>
               </motion.div>
               <div>
-                <h1 className="text-xl md:text-3xl font-bold text-white font-poppins leading-tight">
+                <h1 className="text-xl md:text-3xl font-bold text-white font-space-grotesk leading-tight tracking-tight">
                   <TypewriterText 
                     text="CyberThink" 
-                    className="bg-gradient-to-r from-blue-300 via-purple-300 to-violet-300 bg-clip-text text-transparent drop-shadow-lg" 
+                    className="bg-gradient-to-r from-blue-300 via-purple-300 to-violet-300 bg-clip-text text-transparent drop-shadow-lg font-space-grotesk font-black" 
                     delay={500} 
                     speed={120} 
                   />
                   <motion.span 
-                    className="text-slate-200 ml-2 drop-shadow-lg"
+                    className="text-slate-200 ml-2 drop-shadow-lg font-space-grotesk font-medium"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 2, duration: 0.8 }}
@@ -448,7 +448,7 @@ export default function Home() {
                   </motion.span>
                 </h1>
                 <motion.p 
-                  className="text-purple-200 text-xs md:text-sm font-medium mt-1"
+                  className="text-purple-200 text-xs md:text-sm font-medium mt-1 font-outfit tracking-wide"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 2.5, duration: 0.8 }}
@@ -491,7 +491,7 @@ export default function Home() {
             transition={{ duration: 1.2, ease: "easeOut" }}
           >
             <motion.h2
-              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-poppins leading-tight"
+              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-space-grotesk leading-tight tracking-tighter"
               animate={{ 
                 textShadow: [
                   "0 0 20px rgba(139, 92, 246, 0.3)",
@@ -502,7 +502,7 @@ export default function Home() {
               transition={{ duration: 4, repeat: Infinity }}
             >
               <motion.span 
-                className="block bg-gradient-to-r from-blue-300 via-purple-300 via-violet-300 to-cyan-300 bg-clip-text text-transparent"
+                className="block bg-gradient-to-r from-blue-300 via-purple-300 via-violet-300 to-cyan-300 bg-clip-text text-transparent font-space-grotesk"
                 animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                 style={{ backgroundSize: "200% 200%" }}
                 transition={{ duration: 5, repeat: Infinity }}
@@ -510,7 +510,7 @@ export default function Home() {
                 Risk Assessment
               </motion.span>
               <motion.span 
-                className="block text-white drop-shadow-2xl mt-2"
+                className="block text-white drop-shadow-2xl mt-2 font-space-grotesk font-bold"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
@@ -521,7 +521,7 @@ export default function Home() {
           </motion.div>
           
           <motion.p
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-purple-100 max-w-5xl mx-auto leading-relaxed font-light px-4"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-purple-100 max-w-5xl mx-auto leading-relaxed font-manrope font-light px-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8 }}
@@ -533,7 +533,7 @@ export default function Home() {
               Advanced real-time monitoring and assessment of organizational risk levels with{' '}
             </motion.span>
             <motion.span 
-              className="text-cyan-300 font-semibold drop-shadow-lg"
+              className="text-cyan-300 font-semibold drop-shadow-lg font-outfit"
               animate={{ 
                 color: ["#67E8F9", "#A78BFA", "#67E8F9"],
                 textShadow: [
@@ -546,9 +546,9 @@ export default function Home() {
             >
               intelligent threat detection
             </motion.span>
-            <span> and </span>
+            <span className="font-manrope"> and </span>
             <motion.span 
-              className="text-violet-300 font-semibold drop-shadow-lg"
+              className="text-violet-300 font-semibold drop-shadow-lg font-outfit"
               animate={{ 
                 color: ["#C4B5FD", "#F0ABFC", "#C4B5FD"],
                 textShadow: [
@@ -700,7 +700,7 @@ export default function Home() {
               </motion.div>
               
               <motion.h3 
-                className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4 font-poppins drop-shadow-lg"
+                className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4 font-space-grotesk drop-shadow-lg tracking-tight"
                 animate={{ 
                   textShadow: [
                     "0 0 10px rgba(255, 255, 255, 0.3)",
@@ -713,12 +713,12 @@ export default function Home() {
                 {card.title}
               </motion.h3>
               
-              <p className="text-purple-100 leading-relaxed mb-4 md:mb-6 text-sm md:text-base">
+              <p className="text-purple-100 leading-relaxed mb-4 md:mb-6 text-sm md:text-base font-manrope">
                 {card.description}
               </p>
               
               <motion.div 
-                className={`text-2xl md:text-4xl font-bold ${card.colors.textColor} font-jetbrains-mono drop-shadow-lg`}
+                className={`text-2xl md:text-4xl font-bold ${card.colors.textColor} font-fira-code drop-shadow-lg`}
                 animate={{ 
                   scale: [1, 1.05, 1],
                   textShadow: [
@@ -813,7 +813,7 @@ export default function Home() {
                   }}
                 >
                   <motion.div 
-                    className={`text-2xl md:text-5xl font-bold text-white mb-2 md:mb-4 font-jetbrains-mono drop-shadow-lg group-hover:text-${metric.color}-300 transition-all duration-500`}
+                    className={`text-2xl md:text-5xl font-bold text-white mb-2 md:mb-4 font-fira-code tabular-nums drop-shadow-lg group-hover:text-${metric.color}-300 transition-all duration-500`}
                     animate={{ 
                       textShadow: [
                         `0 0 10px ${metric.glow}`,
@@ -830,7 +830,7 @@ export default function Home() {
                     {metric.value}
                   </motion.div>
                   <motion.div 
-                    className="text-purple-200 font-semibold text-xs md:text-base drop-shadow-sm"
+                    className="text-purple-200 font-semibold text-xs md:text-base drop-shadow-sm font-outfit tracking-wide"
                     animate={{ opacity: [0.7, 1, 0.7] }}
                     transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
                   >
@@ -891,7 +891,7 @@ export default function Home() {
               </motion.div>
               
               <motion.span 
-                className="text-xl md:text-3xl font-bold bg-gradient-to-r from-blue-300 via-purple-300 to-violet-300 bg-clip-text text-transparent font-poppins drop-shadow-lg"
+                className="text-xl md:text-3xl font-bold bg-gradient-to-r from-blue-300 via-purple-300 to-violet-300 bg-clip-text text-transparent font-space-grotesk tracking-tight drop-shadow-lg"
                 animate={{ 
                   backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                   textShadow: [
@@ -911,7 +911,7 @@ export default function Home() {
             </motion.div>
             
             <motion.p 
-              className="text-purple-200 font-medium text-sm md:text-lg drop-shadow-sm"
+              className="text-purple-200 font-medium text-sm md:text-lg drop-shadow-sm font-manrope leading-relaxed"
               animate={{ opacity: [0.8, 1, 0.8] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
@@ -928,7 +928,7 @@ export default function Home() {
               {['Security', 'Innovation', 'Excellence'].map((word, index) => (
                 <motion.span
                   key={word}
-                  className="text-purple-300 text-xs md:text-sm font-medium"
+                  className="text-purple-300 text-xs md:text-sm font-medium font-outfit tracking-wide"
                   animate={{ 
                     opacity: [0.6, 1, 0.6],
                     y: [0, -2, 0]
