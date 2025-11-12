@@ -483,86 +483,202 @@ export default function Home() {
 
       {/* Majestic Main Content */}
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
-        <div className="text-center mb-12 md:mb-20">
-          <motion.div
-            className="mb-6 md:mb-8"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
+        {/* Risk Overview Dashboard */}
+        <motion.div
+          className="mb-12 md:mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        >
+          {/* Risk Overview Header */}
+          <motion.div 
+            className="text-left mb-8 md:mb-12"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <motion.h2
-              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-space-grotesk leading-tight tracking-tighter"
-              animate={{ 
-                textShadow: [
-                  "0 0 20px rgba(139, 92, 246, 0.3)",
-                  "0 0 40px rgba(139, 92, 246, 0.5)",
-                  "0 0 20px rgba(139, 92, 246, 0.3)"
-                ]
-              }}
-              transition={{ duration: 4, repeat: Infinity }}
-            >
-              <motion.span 
-                className="block bg-gradient-to-r from-blue-300 via-purple-300 via-violet-300 to-cyan-300 bg-clip-text text-transparent font-space-grotesk"
-                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                style={{ backgroundSize: "200% 200%" }}
-                transition={{ duration: 5, repeat: Infinity }}
-              >
-                Risk Assessment
-              </motion.span>
-              <motion.span 
-                className="block text-white drop-shadow-2xl mt-2 font-space-grotesk font-bold"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-              >
-                Dashboard
-              </motion.span>
-            </motion.h2>
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white font-space-grotesk tracking-tight mb-2">
+              Risk Overview
+            </h2>
+            <p className="text-purple-200 text-sm md:text-lg font-manrope leading-relaxed">
+              Real-time cybersecurity monitoring and threat intelligence platform
+            </p>
           </motion.div>
-          
-          <motion.p
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-purple-100 max-w-5xl mx-auto leading-relaxed font-manrope font-light px-4"
+
+          {/* Top Metrics Row */}
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.6 }}
+          >
+            {/* Threat Prevention Card */}
+            <motion.div
+              className="bg-gradient-to-br from-slate-800/60 via-purple-900/30 to-slate-800/60 backdrop-blur-2xl rounded-2xl md:rounded-3xl p-6 md:p-8 border border-green-500/30 hover:border-green-400/60 transition-all duration-500 group relative overflow-hidden"
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              whileHover={{ 
+                y: -5, 
+                scale: 1.02,
+                boxShadow: "0 25px 50px -12px rgba(34, 197, 94, 0.3)"
+              }}
+            >
+              <motion.div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-green-500/10 via-transparent to-emerald-500/10"
+              />
+              
+              <div className="relative z-10">
+                <motion.div 
+                  className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-green-500/30 to-emerald-500/30 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-all duration-500"
+                  animate={{ 
+                    boxShadow: [
+                      "0 0 20px rgba(34, 197, 94, 0.3)",
+                      "0 0 30px rgba(34, 197, 94, 0.5)",
+                      "0 0 20px rgba(34, 197, 94, 0.3)"
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
+                  <svg className="w-6 h-6 md:w-8 md:h-8 text-green-300 drop-shadow-lg" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </motion.div>
+                
+                <motion.div 
+                  className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-2 font-fira-code tabular-nums drop-shadow-lg"
+                  animate={{ 
+                    textShadow: [
+                      "0 0 20px rgba(34, 197, 94, 0.4)",
+                      "0 0 30px rgba(34, 197, 94, 0.6)",
+                      "0 0 20px rgba(34, 197, 94, 0.4)"
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
+                  94%
+                </motion.div>
+                
+                <motion.div 
+                  className="text-green-300 font-semibold text-base md:text-xl lg:text-2xl font-outfit tracking-wide"
+                  animate={{ opacity: [0.8, 1, 0.8] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  Threat Prevention
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Annual Savings Card */}
+            <motion.div
+              className="bg-gradient-to-br from-slate-800/60 via-purple-900/30 to-slate-800/60 backdrop-blur-2xl rounded-2xl md:rounded-3xl p-6 md:p-8 border border-blue-500/30 hover:border-blue-400/60 transition-all duration-500 group relative overflow-hidden"
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              whileHover={{ 
+                y: -5, 
+                scale: 1.02,
+                boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.3)"
+              }}
+            >
+              <motion.div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-blue-500/10 via-transparent to-cyan-500/10"
+              />
+              
+              <div className="relative z-10">
+                <motion.div 
+                  className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-all duration-500"
+                  animate={{ 
+                    boxShadow: [
+                      "0 0 20px rgba(59, 130, 246, 0.3)",
+                      "0 0 30px rgba(59, 130, 246, 0.5)",
+                      "0 0 20px rgba(59, 130, 246, 0.3)"
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                >
+                  <svg className="w-6 h-6 md:w-8 md:h-8 text-blue-300 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </motion.div>
+                
+                <motion.div 
+                  className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-2 font-fira-code tabular-nums drop-shadow-lg"
+                  animate={{ 
+                    textShadow: [
+                      "0 0 20px rgba(59, 130, 246, 0.4)",
+                      "0 0 30px rgba(59, 130, 246, 0.6)",
+                      "0 0 20px rgba(59, 130, 246, 0.4)"
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
+                >
+                  $2.4M
+                </motion.div>
+                
+                <motion.div 
+                  className="text-blue-300 font-semibold text-base md:text-xl lg:text-2xl font-outfit tracking-wide"
+                  animate={{ opacity: [0.8, 1, 0.8] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 0.7 }}
+                >
+                  Annual Savings
+                </motion.div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Risk Score Trend Section */}
+          <motion.div
+            className="bg-gradient-to-br from-slate-800/60 via-purple-900/30 to-slate-800/60 backdrop-blur-2xl rounded-2xl md:rounded-3xl p-6 md:p-8 border border-purple-500/30 hover:border-purple-400/60 transition-all duration-500 mb-8 md:mb-12"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
           >
-            <motion.span
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              Advanced real-time monitoring and assessment of organizational risk levels with{' '}
-            </motion.span>
-            <motion.span 
-              className="text-cyan-300 font-semibold drop-shadow-lg font-outfit"
-              animate={{ 
-                color: ["#67E8F9", "#A78BFA", "#67E8F9"],
-                textShadow: [
-                  "0 0 10px rgba(103, 232, 249, 0.5)",
-                  "0 0 20px rgba(167, 139, 250, 0.5)",
-                  "0 0 10px rgba(103, 232, 249, 0.5)"
-                ]
-              }}
-              transition={{ duration: 4, repeat: Infinity }}
-            >
-              intelligent threat detection
-            </motion.span>
-            <span className="font-manrope"> and </span>
-            <motion.span 
-              className="text-violet-300 font-semibold drop-shadow-lg font-outfit"
-              animate={{ 
-                color: ["#C4B5FD", "#F0ABFC", "#C4B5FD"],
-                textShadow: [
-                  "0 0 10px rgba(196, 181, 253, 0.5)",
-                  "0 0 20px rgba(240, 171, 252, 0.5)",
-                  "0 0 10px rgba(196, 181, 253, 0.5)"
-                ]
-              }}
-              transition={{ duration: 4, repeat: Infinity, delay: 2 }}
-            >
-              predictive analytics
-            </motion.span>
-          </motion.p>
-        </div>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl md:text-2xl font-bold text-white font-space-grotesk tracking-tight">
+                Risk Score Trend
+              </h3>
+              <motion.div 
+                className="text-sm text-purple-300 font-outfit tracking-wide"
+                animate={{ opacity: [0.7, 1, 0.7] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                Low Risk
+              </motion.div>
+            </div>
+            
+            {/* Simplified trend chart visualization */}
+            <div className="h-32 md:h-48 bg-gradient-to-r from-blue-500/10 via-purple-500/5 to-blue-500/10 rounded-xl border border-purple-400/20 flex items-end justify-center p-4">
+              <motion.div 
+                className="flex items-end space-x-2 w-full max-w-md"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.5, duration: 1 }}
+              >
+                {Array.from({ length: 12 }, (_, i) => (
+                  <motion.div
+                    key={i}
+                    className="bg-gradient-to-t from-blue-400 to-purple-400 rounded-t-sm flex-1"
+                    style={{ 
+                      height: `${20 + Math.sin(i * 0.5) * 15 + Math.random() * 10}%`,
+                      minHeight: '20%'
+                    }}
+                    initial={{ height: '0%' }}
+                    animate={{ 
+                      height: `${20 + Math.sin(i * 0.5) * 15 + Math.random() * 10}%`
+                    }}
+                    transition={{ 
+                      delay: 1.7 + i * 0.1, 
+                      duration: 0.6,
+                      type: "spring",
+                      stiffness: 100
+                    }}
+                  />
+                ))}
+              </motion.div>
+            </div>
+          </motion.div>
+        </motion.div>
 
         {/* Majestic Risk Gauge */}
         <div className="flex justify-center mb-12 md:mb-20 px-4">
