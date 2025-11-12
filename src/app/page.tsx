@@ -483,198 +483,208 @@ export default function Home() {
 
       {/* Majestic Main Content */}
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
-        {/* Risk Overview Dashboard */}
+        {/* Risk Overview Dashboard Window */}
         <motion.div
-          className="mb-12 md:mb-20"
+          className="mb-12 md:mb-20 max-w-5xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
         >
-          {/* Risk Overview Header */}
+          {/* Window Container */}
           <motion.div 
-            className="text-left mb-8 md:mb-12"
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl overflow-hidden border border-gray-200/50"
+            initial={{ opacity: 0, scale: 0.95, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            whileHover={{ 
+              scale: 1.01,
+              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+            }}
           >
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white font-space-grotesk tracking-tight mb-2">
-              Risk Overview
-            </h2>
-            <p className="text-purple-200 text-sm md:text-lg font-manrope leading-relaxed">
-              Real-time cybersecurity monitoring and threat intelligence platform
-            </p>
-          </motion.div>
-
-          {/* Top Metrics Row */}
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
-          >
-            {/* Threat Prevention Card */}
-            <motion.div
-              className="bg-gradient-to-br from-slate-800/60 via-purple-900/30 to-slate-800/60 backdrop-blur-2xl rounded-2xl md:rounded-3xl p-6 md:p-8 border border-green-500/30 hover:border-green-400/60 transition-all duration-500 group relative overflow-hidden"
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              whileHover={{ 
-                y: -5, 
-                scale: 1.02,
-                boxShadow: "0 25px 50px -12px rgba(34, 197, 94, 0.3)"
-              }}
+            {/* Window Header Bar */}
+            <motion.div 
+              className="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4 flex items-center justify-between"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
             >
-              <motion.div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-green-500/10 via-transparent to-emerald-500/10"
-              />
+              {/* Window Controls */}
+              <div className="flex items-center space-x-2">
+                <motion.div 
+                  className="w-3 h-3 bg-red-500 rounded-full"
+                  whileHover={{ scale: 1.2 }}
+                  transition={{ duration: 0.2 }}
+                />
+                <motion.div 
+                  className="w-3 h-3 bg-yellow-500 rounded-full"
+                  whileHover={{ scale: 1.2 }}
+                  transition={{ duration: 0.2 }}
+                />
+                <motion.div 
+                  className="w-3 h-3 bg-green-500 rounded-full"
+                  whileHover={{ scale: 1.2 }}
+                  transition={{ duration: 0.2 }}
+                />
+              </div>
               
-              <div className="relative z-10">
-                <motion.div 
-                  className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-green-500/30 to-emerald-500/30 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-all duration-500"
-                  animate={{ 
-                    boxShadow: [
-                      "0 0 20px rgba(34, 197, 94, 0.3)",
-                      "0 0 30px rgba(34, 197, 94, 0.5)",
-                      "0 0 20px rgba(34, 197, 94, 0.3)"
-                    ]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  <svg className="w-6 h-6 md:w-8 md:h-8 text-green-300 drop-shadow-lg" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                </motion.div>
-                
-                <motion.div 
-                  className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-2 font-fira-code tabular-nums drop-shadow-lg"
-                  animate={{ 
-                    textShadow: [
-                      "0 0 20px rgba(34, 197, 94, 0.4)",
-                      "0 0 30px rgba(34, 197, 94, 0.6)",
-                      "0 0 20px rgba(34, 197, 94, 0.4)"
-                    ]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  94%
-                </motion.div>
-                
-                <motion.div 
-                  className="text-green-300 font-semibold text-base md:text-xl lg:text-2xl font-outfit tracking-wide"
+              {/* Window Title */}
+              <div className="flex-1 text-center">
+                <motion.h2 
+                  className="text-white font-semibold text-lg font-space-grotesk tracking-tight"
                   animate={{ opacity: [0.8, 1, 0.8] }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  transition={{ duration: 3, repeat: Infinity }}
                 >
-                  Threat Prevention
-                </motion.div>
+                  Dashboard
+                </motion.h2>
+              </div>
+              
+              {/* Navigation Items */}
+              <div className="flex items-center space-x-6 text-sm text-white/90 font-outfit">
+                <motion.span 
+                  className="cursor-pointer hover:text-white transition-colors duration-200"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  Analytics
+                </motion.span>
+                <motion.span 
+                  className="cursor-pointer hover:text-white transition-colors duration-200"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  Reports
+                </motion.span>
               </div>
             </motion.div>
 
-            {/* Annual Savings Card */}
-            <motion.div
-              className="bg-gradient-to-br from-slate-800/60 via-purple-900/30 to-slate-800/60 backdrop-blur-2xl rounded-2xl md:rounded-3xl p-6 md:p-8 border border-blue-500/30 hover:border-blue-400/60 transition-all duration-500 group relative overflow-hidden"
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: 1 }}
-              whileHover={{ 
-                y: -5, 
-                scale: 1.02,
-                boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.3)"
-              }}
-            >
-              <motion.div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-blue-500/10 via-transparent to-cyan-500/10"
-              />
-              
-              <div className="relative z-10">
-                <motion.div 
-                  className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-all duration-500"
-                  animate={{ 
-                    boxShadow: [
-                      "0 0 20px rgba(59, 130, 246, 0.3)",
-                      "0 0 30px rgba(59, 130, 246, 0.5)",
-                      "0 0 20px rgba(59, 130, 246, 0.3)"
-                    ]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-                >
-                  <svg className="w-6 h-6 md:w-8 md:h-8 text-blue-300 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </motion.div>
-                
-                <motion.div 
-                  className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-2 font-fira-code tabular-nums drop-shadow-lg"
-                  animate={{ 
-                    textShadow: [
-                      "0 0 20px rgba(59, 130, 246, 0.4)",
-                      "0 0 30px rgba(59, 130, 246, 0.6)",
-                      "0 0 20px rgba(59, 130, 246, 0.4)"
-                    ]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-                >
-                  $2.4M
-                </motion.div>
-                
-                <motion.div 
-                  className="text-blue-300 font-semibold text-base md:text-xl lg:text-2xl font-outfit tracking-wide"
-                  animate={{ opacity: [0.8, 1, 0.8] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.7 }}
-                >
-                  Annual Savings
-                </motion.div>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Risk Score Trend Section */}
-          <motion.div
-            className="bg-gradient-to-br from-slate-800/60 via-purple-900/30 to-slate-800/60 backdrop-blur-2xl rounded-2xl md:rounded-3xl p-6 md:p-8 border border-purple-500/30 hover:border-purple-400/60 transition-all duration-500 mb-8 md:mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-          >
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl md:text-2xl font-bold text-white font-space-grotesk tracking-tight">
-                Risk Score Trend
-              </h3>
+            {/* Window Content */}
+            <div className="p-8 bg-gradient-to-br from-gray-50 to-blue-50">
+              {/* Risk Overview Title */}
               <motion.div 
-                className="text-sm text-purple-300 font-outfit tracking-wide"
-                animate={{ opacity: [0.7, 1, 0.7] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                className="mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
               >
-                Low Risk
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-800 font-space-grotesk mb-2">
+                  Risk Overview
+                </h3>
+                <div className="flex items-center justify-end">
+                  <span className="text-sm text-blue-600 font-outfit font-medium">Low Risk</span>
+                </div>
               </motion.div>
-            </div>
-            
-            {/* Simplified trend chart visualization */}
-            <div className="h-32 md:h-48 bg-gradient-to-r from-blue-500/10 via-purple-500/5 to-blue-500/10 rounded-xl border border-purple-400/20 flex items-end justify-center p-4">
+
+              {/* Metrics Grid */}
               <motion.div 
-                className="flex items-end space-x-2 w-full max-w-md"
+                className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1.5, duration: 1 }}
+                transition={{ duration: 1, delay: 0.9 }}
               >
-                {Array.from({ length: 12 }, (_, i) => (
-                  <motion.div
-                    key={i}
-                    className="bg-gradient-to-t from-blue-400 to-purple-400 rounded-t-sm flex-1"
-                    style={{ 
-                      height: `${20 + Math.sin(i * 0.5) * 15 + Math.random() * 10}%`,
-                      minHeight: '20%'
-                    }}
-                    initial={{ height: '0%' }}
+                {/* 94% Threat Prevention */}
+                <motion.div
+                  className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 group"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.1 }}
+                  whileHover={{ 
+                    y: -2,
+                    boxShadow: "0 10px 25px -3px rgba(0, 0, 0, 0.1)"
+                  }}
+                >
+                  <motion.div 
+                    className="text-4xl md:text-5xl font-bold text-green-600 mb-2 font-fira-code tabular-nums"
                     animate={{ 
-                      height: `${20 + Math.sin(i * 0.5) * 15 + Math.random() * 10}%`
+                      scale: [1, 1.02, 1]
                     }}
-                    transition={{ 
-                      delay: 1.7 + i * 0.1, 
-                      duration: 0.6,
-                      type: "spring",
-                      stiffness: 100
+                    transition={{ duration: 3, repeat: Infinity }}
+                  >
+                    94%
+                  </motion.div>
+                  <div className="text-gray-600 font-medium text-sm font-outfit">
+                    Threat Prevention
+                  </div>
+                </motion.div>
+
+                {/* $2.4M Annual Savings */}
+                <motion.div
+                  className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 group"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.3 }}
+                  whileHover={{ 
+                    y: -2,
+                    boxShadow: "0 10px 25px -3px rgba(0, 0, 0, 0.1)"
+                  }}
+                >
+                  <motion.div 
+                    className="text-4xl md:text-5xl font-bold text-blue-600 mb-2 font-fira-code tabular-nums"
+                    animate={{ 
+                      scale: [1, 1.02, 1]
                     }}
-                  />
-                ))}
+                    transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                  >
+                    $2.4M
+                  </motion.div>
+                  <div className="text-gray-600 font-medium text-sm font-outfit">
+                    Annual Savings
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              {/* Risk Score Trend Chart */}
+              <motion.div
+                className="bg-white rounded-xl p-6 shadow-lg border border-gray-100"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.5 }}
+              >
+                <div className="mb-4">
+                  <h4 className="text-lg font-semibold text-gray-800 font-space-grotesk">
+                    Risk Score Trend
+                  </h4>
+                </div>
+                
+                {/* Chart Area - matching the blue gradient from image */}
+                <div className="h-40 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg border border-blue-200 flex items-end justify-center p-4 relative overflow-hidden">
+                  {/* Animated chart bars */}
+                  <motion.div 
+                    className="flex items-end space-x-1 w-full max-w-sm h-full"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 2, duration: 1 }}
+                  >
+                    {Array.from({ length: 20 }, (_, i) => (
+                      <motion.div
+                        key={i}
+                        className="bg-gradient-to-t from-blue-400 to-blue-500 rounded-t-sm flex-1 opacity-70"
+                        style={{ 
+                          height: `${30 + Math.sin(i * 0.3) * 20 + Math.random() * 15}%`,
+                          minHeight: '25%'
+                        }}
+                        initial={{ height: '0%' }}
+                        animate={{ 
+                          height: `${30 + Math.sin(i * 0.3) * 20 + Math.random() * 15}%`
+                        }}
+                        transition={{ 
+                          delay: 2.2 + i * 0.05, 
+                          duration: 0.8,
+                          type: "spring",
+                          stiffness: 120
+                        }}
+                      />
+                    ))}
+                  </motion.div>
+                  
+                  {/* Subtle grid lines like in the reference */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    {Array.from({ length: 4 }, (_, i) => (
+                      <div 
+                        key={i}
+                        className="absolute left-0 right-0 border-t border-blue-300/30"
+                        style={{ top: `${25 + i * 25}%` }}
+                      />
+                    ))}
+                  </div>
+                </div>
               </motion.div>
             </div>
           </motion.div>
