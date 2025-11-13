@@ -59,14 +59,14 @@ const FloatingParticles = () => {
   }>>([])
   
   useEffect(() => {
-    const newParticles = Array.from({ length: 20 }, (_, i) => ({
+    const newParticles = Array.from({ length: 25 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 1.5 + 0.5,
+      size: Math.random() * 2 + 1,
       delay: Math.random() * 8,
-      duration: Math.random() * 30 + 25,
-      color: ['#A78BFA', '#F59E0B', '#C084FC', '#FB923C', '#8B5CF6', '#FBBF24'][Math.floor(Math.random() * 6)]
+      duration: Math.random() * 25 + 20,
+      color: ['#A78BFA', '#F472B6', '#C084FC', '#E879F9', '#8B5CF6', '#D946EF'][Math.floor(Math.random() * 6)]
     }))
     setParticles(newParticles)
   }, [])
@@ -110,11 +110,11 @@ const NeuralBackground = () => (
     <svg className="absolute inset-0 w-full h-full opacity-15" viewBox="0 0 1200 800">
       <defs>
         <linearGradient id="neuralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#A78BFA" stopOpacity="0.25" />
-          <stop offset="25%" stopColor="#FBBF24" stopOpacity="0.3" />
-          <stop offset="50%" stopColor="#C084FC" stopOpacity="0.4" />
-          <stop offset="75%" stopColor="#FB923C" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.25" />
+          <stop offset="0%" stopColor="#A78BFA" stopOpacity="0.3" />
+          <stop offset="25%" stopColor="#F472B6" stopOpacity="0.4" />
+          <stop offset="50%" stopColor="#C084FC" stopOpacity="0.5" />
+          <stop offset="75%" stopColor="#E879F9" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#D946EF" stopOpacity="0.3" />
         </linearGradient>
         <filter id="glow">
           <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
@@ -396,39 +396,50 @@ const RiskGauge = () => {
 export default function Home() {
   return (
     <div className="min-h-screen relative overflow-hidden font-inter text-white">
-      {/* Reference Design Inspired Background - Dark Modern Theme */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-gray-900 to-black"></div>
+      {/* Exact Reference Design Background - Pure Black */}
+      <div className="absolute inset-0 bg-black"></div>
       
-      {/* Signature Purple Glow - Like Reference Design */}
-      <div className="absolute inset-0 opacity-40">
-        <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 w-[500px] h-[300px] bg-gradient-radial from-purple-600/40 via-fuchsia-500/20 to-transparent rounded-full filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-gradient-to-l from-violet-500/30 to-purple-400/25 rounded-full filter blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-      </div>
-
-      {/* Golden Accent Border Elements - Reference Theme */}
-      <div className="absolute inset-0 opacity-15">
-        <div className="absolute top-8 left-8 w-32 h-px bg-gradient-to-r from-amber-400/60 to-transparent"></div>
-        <div className="absolute top-8 left-8 w-px h-32 bg-gradient-to-b from-amber-400/60 to-transparent"></div>
-        <div className="absolute bottom-8 right-8 w-32 h-px bg-gradient-to-l from-orange-400/60 to-transparent"></div>
-        <div className="absolute bottom-8 right-8 w-px h-32 bg-gradient-to-t from-orange-400/60 to-transparent"></div>
-      </div>
+      {/* Golden/Orange Border Frame - Exact Reference Match */}
+      <motion.div 
+        className="absolute inset-6 border-2 rounded-lg"
+        style={{
+          borderImage: 'linear-gradient(45deg, #f59e0b, #fb923c, #f59e0b) 1',
+          boxShadow: '0 0 20px rgba(245, 158, 11, 0.3), inset 0 0 20px rgba(245, 158, 11, 0.1)'
+        }}
+        animate={{
+          boxShadow: [
+            '0 0 20px rgba(245, 158, 11, 0.3), inset 0 0 20px rgba(245, 158, 11, 0.1)',
+            '0 0 30px rgba(245, 158, 11, 0.5), inset 0 0 30px rgba(245, 158, 11, 0.2)',
+            '0 0 20px rgba(245, 158, 11, 0.3), inset 0 0 20px rgba(245, 158, 11, 0.1)'
+          ]
+        }}
+        transition={{ duration: 4, repeat: Infinity }}
+      >
+        {/* Large Purple Glow - Center Feature Like Reference */}
+        <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 w-[500px] h-[300px] bg-gradient-radial from-purple-500/60 via-fuchsia-600/40 via-purple-800/20 to-transparent rounded-full filter blur-3xl"></div>
+        
+        {/* Secondary Purple Elements */}
+        <div className="absolute top-8 left-8 w-24 h-24 bg-gradient-radial from-purple-400/50 to-transparent rounded-full filter blur-xl"></div>
+        <div className="absolute bottom-8 right-8 w-32 h-32 bg-gradient-radial from-fuchsia-500/40 to-transparent rounded-full filter blur-xl"></div>
+      </motion.div>
       
-      {/* Subtle Grid Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="w-full h-full" style={{
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px'
-        }}></div>
-      </div>
-
-      {/* Modern Accent Dots */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-16 right-16 w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-20 left-20 w-1 h-1 bg-orange-400 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/2 right-1/3 w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
+      {/* Golden Corner Accent Elements - Reference Style */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Top-left corner accents */}
+        <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-orange-400 opacity-80"></div>
+        <div className="absolute top-2 left-2 w-12 h-12 border-t border-l border-amber-500/60"></div>
+        
+        {/* Top-right corner accents */}
+        <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-orange-400 opacity-80"></div>
+        <div className="absolute top-2 right-2 w-12 h-12 border-t border-r border-amber-500/60"></div>
+        
+        {/* Bottom-left corner accents */}
+        <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-orange-400 opacity-80"></div>
+        <div className="absolute bottom-2 left-2 w-12 h-12 border-b border-l border-amber-500/60"></div>
+        
+        {/* Bottom-right corner accents */}
+        <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-orange-400 opacity-80"></div>
+        <div className="absolute bottom-2 right-2 w-12 h-12 border-b border-r border-amber-500/60"></div>
       </div>
 
       <FloatingParticles />
