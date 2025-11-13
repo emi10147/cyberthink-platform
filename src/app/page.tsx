@@ -66,7 +66,7 @@ const FloatingParticles = () => {
       size: Math.random() * 4 + 2,
       delay: Math.random() * 5,
       duration: Math.random() * 20 + 15,
-      color: ['#3B82F6', '#8B5CF6', '#06B6D4', '#A855F7', '#EC4899'][Math.floor(Math.random() * 5)]
+      color: ['#3B82F6', '#8B5CF6', '#6366F1', '#A855F7', '#1E40AF', '#7C3AED'][Math.floor(Math.random() * 6)]
     }))
     setParticles(newParticles)
   }, [])
@@ -109,11 +109,12 @@ const NeuralBackground = () => (
     <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 1200 800">
       <defs>
         <linearGradient id="neuralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.4" />
-          <stop offset="25%" stopColor="#8B5CF6" stopOpacity="0.6" />
-          <stop offset="50%" stopColor="#A855F7" stopOpacity="0.5" />
-          <stop offset="75%" stopColor="#EC4899" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.3" />
+          <stop offset="0%" stopColor="#1E40AF" stopOpacity="0.5" />
+          <stop offset="20%" stopColor="#3B82F6" stopOpacity="0.6" />
+          <stop offset="40%" stopColor="#6366F1" stopOpacity="0.7" />
+          <stop offset="60%" stopColor="#8B5CF6" stopOpacity="0.6" />
+          <stop offset="80%" stopColor="#A855F7" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="#7C3AED" stopOpacity="0.4" />
         </linearGradient>
         <filter id="glow">
           <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -394,10 +395,11 @@ const RiskGauge = () => {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 via-purple-900 to-violet-900 relative overflow-hidden font-inter text-white">
-      {/* Majestic Background Layers */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/50 via-transparent to-blue-900/50"></div>
-      <div className="absolute inset-0 bg-gradient-to-bl from-violet-900/30 via-transparent to-purple-900/30"></div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-800 via-indigo-900 to-violet-900 relative overflow-hidden font-inter text-white">
+      {/* Enhanced Blue-Purple Background Layers */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/60 via-transparent to-purple-800/60"></div>
+      <div className="absolute inset-0 bg-gradient-to-bl from-indigo-800/40 via-transparent to-violet-800/40"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 via-blue-800/20 to-transparent"></div>
       <FloatingParticles />
       <NeuralBackground />
       
