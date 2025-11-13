@@ -66,7 +66,7 @@ const FloatingParticles = () => {
       size: Math.random() * 2 + 1,
       delay: Math.random() * 8,
       duration: Math.random() * 25 + 20,
-      color: ['#60A5FA', '#34D399', '#A78BFA', '#38BDF8', '#3B82F6', '#06B6D4'][Math.floor(Math.random() * 6)]
+      color: ['#A78BFA', '#F472B6', '#C084FC', '#E879F9', '#8B5CF6', '#D946EF'][Math.floor(Math.random() * 6)]
     }))
     setParticles(newParticles)
   }, [])
@@ -110,11 +110,11 @@ const NeuralBackground = () => (
     <svg className="absolute inset-0 w-full h-full opacity-15" viewBox="0 0 1200 800">
       <defs>
         <linearGradient id="neuralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#60A5FA" stopOpacity="0.3" />
-          <stop offset="25%" stopColor="#34D399" stopOpacity="0.4" />
-          <stop offset="50%" stopColor="#A78BFA" stopOpacity="0.5" />
-          <stop offset="75%" stopColor="#38BDF8" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.3" />
+          <stop offset="0%" stopColor="#A78BFA" stopOpacity="0.3" />
+          <stop offset="25%" stopColor="#F472B6" stopOpacity="0.4" />
+          <stop offset="50%" stopColor="#C084FC" stopOpacity="0.5" />
+          <stop offset="75%" stopColor="#E879F9" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#D946EF" stopOpacity="0.3" />
         </linearGradient>
         <filter id="glow">
           <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
@@ -397,32 +397,32 @@ export default function Home() {
   return (
     <div className="min-h-screen relative overflow-hidden font-inter text-white">
       {/* Majestic Artistic Background Foundation */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-purple-950 to-violet-950"></div>
       
       {/* Elegant Flowing Shapes */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute -top-1/2 -left-1/4 w-96 h-96 bg-gradient-to-r from-blue-600/40 to-cyan-500/40 rounded-full filter blur-3xl transform rotate-45 animate-pulse"></div>
-        <div className="absolute top-1/4 -right-1/4 w-80 h-80 bg-gradient-to-l from-indigo-500/30 to-blue-400/30 rounded-full filter blur-3xl transform -rotate-12 animate-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute -bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-t from-blue-700/35 to-cyan-400/35 rounded-full filter blur-3xl transform rotate-90 animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute -top-1/2 -left-1/4 w-96 h-96 bg-gradient-to-r from-purple-600/40 to-fuchsia-500/40 rounded-full filter blur-3xl transform rotate-45 animate-pulse"></div>
+        <div className="absolute top-1/4 -right-1/4 w-80 h-80 bg-gradient-to-l from-violet-500/30 to-purple-400/30 rounded-full filter blur-3xl transform -rotate-12 animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute -bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-t from-purple-700/35 to-fuchsia-400/35 rounded-full filter blur-3xl transform rotate-90 animate-pulse" style={{animationDelay: '2s'}}></div>
       </div>
 
       {/* Sophisticated Mesh Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-slate-950/50 to-blue-900/70"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-900/20 to-indigo-900/40"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-purple-950/90 via-slate-950/50 to-purple-900/70"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-900/20 to-violet-900/40"></div>
       
       {/* Subtle Geometric Patterns */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-cyan-300 rounded-full animate-ping" style={{animationDelay: '0s'}}></div>
-        <div className="absolute top-3/4 left-3/4 w-1 h-1 bg-blue-300 rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/2 right-1/4 w-1.5 h-1.5 bg-indigo-300 rounded-full animate-ping" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-1/4 left-1/2 w-1 h-1 bg-cyan-400 rounded-full animate-ping" style={{animationDelay: '3s'}}></div>
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-fuchsia-300 rounded-full animate-ping" style={{animationDelay: '0s'}}></div>
+        <div className="absolute top-3/4 left-3/4 w-1 h-1 bg-purple-300 rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 right-1/4 w-1.5 h-1.5 bg-violet-300 rounded-full animate-ping" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-1/4 left-1/2 w-1 h-1 bg-fuchsia-400 rounded-full animate-ping" style={{animationDelay: '3s'}}></div>
       </div>
 
       {/* Elegant Light Rays */}
       <div className="absolute inset-0 overflow-hidden opacity-20">
-        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-blue-300 to-transparent transform skew-x-12"></div>
-        <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-cyan-300 to-transparent transform -skew-x-6"></div>
-        <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-indigo-300 to-transparent transform skew-x-3"></div>
+        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-purple-300 to-transparent transform skew-x-12"></div>
+        <div className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-fuchsia-300 to-transparent transform -skew-x-6"></div>
+        <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-violet-300 to-transparent transform skew-x-3"></div>
       </div>
 
       <FloatingParticles />
