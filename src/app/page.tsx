@@ -433,10 +433,10 @@ export default function Home() {
                 </svg>
               </motion.div>
               <div>
-                <h1 className="text-xl md:text-3xl font-bold text-white font-space-grotesk leading-tight tracking-tight">
+                <h1 className="text-xl md:text-3xl font-bold text-white font-orbitron leading-tight tracking-tight">
                   <TypewriterText 
                     text="CyberThink" 
-                    className="bg-gradient-to-r from-blue-300 via-purple-300 to-violet-300 bg-clip-text text-transparent drop-shadow-lg font-space-grotesk font-black" 
+                    className="bg-gradient-to-r from-blue-300 via-purple-300 to-violet-300 bg-clip-text text-transparent drop-shadow-lg font-orbitron font-black" 
                     delay={500} 
                     speed={120} 
                   />
@@ -573,7 +573,7 @@ export default function Home() {
               {/* CyberThink Text Logo */}
               <div>
                 <motion.h1 
-                  className="text-2xl md:text-3xl lg:text-4xl font-black text-white font-space-grotesk tracking-tight leading-none"
+                  className="text-2xl md:text-3xl lg:text-4xl font-black text-white font-orbitron tracking-tight leading-none"
                   animate={{ 
                     textShadow: [
                       "0 0 20px rgba(34, 197, 94, 0.3)",
@@ -597,7 +597,7 @@ export default function Home() {
                 </motion.h1>
                 
                 <motion.p 
-                  className="text-emerald-200 text-sm md:text-base font-outfit tracking-wide mt-2 font-medium"
+                  className="text-emerald-200 text-sm md:text-base font-rajdhani tracking-wide mt-2 font-medium"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1, duration: 0.8 }}
@@ -638,13 +638,13 @@ export default function Home() {
               
               {/* Window Title */}
               <div className="flex-1 text-center">
-                <h2 className="text-white font-semibold text-sm md:text-lg font-space-grotesk">
+                <h2 className="text-white font-semibold text-sm md:text-lg font-orbitron">
                   Dashboard
                 </h2>
               </div>
               
               {/* Navigation Items */}
-              <div className="flex items-center space-x-2 md:space-x-4 text-xs md:text-sm text-white/90 font-outfit">
+              <div className="flex items-center space-x-2 md:space-x-4 text-xs md:text-sm text-white/90 font-exo2">
                 <span>Analytics</span>
                 <span>Reports</span>
               </div>
@@ -655,10 +655,10 @@ export default function Home() {
               {/* Risk Overview Title */}
               <div className="mb-4 md:mb-6">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                  <h3 className="text-lg md:text-2xl font-bold text-gray-800 font-space-grotesk mb-2 sm:mb-0">
+                  <h3 className="text-lg md:text-2xl font-bold text-gray-800 font-orbitron mb-2 sm:mb-0">
                     Risk Overview
                   </h3>
-                  <span className="text-xs md:text-sm text-blue-600 font-outfit font-medium">Low Risk</span>
+                  <span className="text-xs md:text-sm text-blue-600 font-exo2 font-medium">Low Risk</span>
                 </div>
               </div>
 
@@ -666,20 +666,20 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-3 md:gap-4 mb-4 md:mb-6">
                 {/* 94% Threat Prevention */}
                 <div className="bg-white rounded-lg p-3 md:p-4 shadow border border-gray-100">
-                  <div className="text-2xl md:text-3xl font-bold text-green-600 mb-1 font-fira-code">
+                  <div className="text-2xl md:text-3xl font-bold text-green-600 mb-1 font-jetbrains-mono">
                     94%
                   </div>
-                  <div className="text-gray-600 font-medium text-xs md:text-sm font-outfit">
+                  <div className="text-gray-600 font-medium text-xs md:text-sm font-exo2">
                     Threat Prevention
                   </div>
                 </div>
 
                 {/* $2.4M Annual Savings */}
                 <div className="bg-white rounded-lg p-3 md:p-4 shadow border border-gray-100">
-                  <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-1 font-fira-code">
+                  <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-1 font-jetbrains-mono">
                     $2.4M
                   </div>
-                  <div className="text-gray-600 font-medium text-xs md:text-sm font-outfit">
+                  <div className="text-gray-600 font-medium text-xs md:text-sm font-exo2">
                     Annual Savings
                   </div>
                 </div>
@@ -688,7 +688,7 @@ export default function Home() {
               {/* Simple Chart */}
               <div className="bg-white rounded-lg p-3 md:p-4 shadow border border-gray-100">
                 <div className="mb-3">
-                  <h4 className="text-sm md:text-lg font-semibold text-gray-800 font-space-grotesk">
+                  <h4 className="text-sm md:text-lg font-semibold text-gray-800 font-orbitron">
                     Risk Score Trend
                   </h4>
                 </div>

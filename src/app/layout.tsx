@@ -1,43 +1,43 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, Fira_Code, Outfit, Manrope } from "next/font/google";
+import { Inter, JetBrains_Mono, Orbitron, Exo_2, Rajdhani } from "next/font/google";
 import "./globals.css";
 
-// Modern, clean sans-serif for body text
+// Clean, highly readable sans-serif for body text
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
-// Futuristic, tech-focused font for headings
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+// Futuristic, sci-fi inspired font for main headings and brand
+const orbitron = Orbitron({
+  variable: "--font-orbitron",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
-// Premium monospace for metrics and code
-const firaCode = Fira_Code({
-  variable: "--font-fira-code",
+// Premium tech monospace for metrics and data
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-// Elegant, rounded font for UI elements
-const outfit = Outfit({
-  variable: "--font-outfit",
+// Modern, tech-focused font for UI elements
+const exo2 = Exo_2({
+  variable: "--font-exo2",
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
-// Sophisticated sans-serif for descriptions
-const manrope = Manrope({
-  variable: "--font-manrope",
+// Strong, technical font for descriptions and secondary text
+const rajdhani = Rajdhani({
+  variable: "--font-rajdhani",
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -51,10 +51,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${firaCode.variable} ${outfit.variable} ${manrope.variable} antialiased font-inter`}
+        className={`${inter.variable} ${orbitron.variable} ${jetbrainsMono.variable} ${exo2.variable} ${rajdhani.variable} antialiased font-inter`}
       >
         {children}
       </body>
